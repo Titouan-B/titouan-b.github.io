@@ -1,0 +1,87 @@
+@font-face {
+    src: url("fonts/Seraphimb1.ttf");
+    font-family: "Seraphim";
+  }
+
+@font-face {
+	src: url("../css/fonts/Web437_DOS-V_re_ANK24.woff2");
+	font-family: "DOS";
+	}
+
+* { 
+	image-rendering: pixelated;
+	box-sizing: border-box;
+	scrollbar-color: cadetblue gainsboro;
+	overscroll-behavior: none;
+}
+
+header {  
+	font-size: 3vw; 
+	color: white;  
+	text-align: center;
+	width: fit-content;
+	font-family: "Seraphim";
+	letter-spacing: 0.1em;
+}
+
+
+.border {background-color: rgba(223, 190, 90, 0.775); 
+		border: 5px outset rgb(62, 57, 57); 
+		width: fit-content;
+		padding: 5px 20px;
+		border-radius: 10%;
+	}
+	
+p,ul {font-size: 1rem; 
+	line-height: 1.3;
+	color: white; 
+	text-align: center;
+	font-family: "DOS";
+	letter-spacing: normal;
+}
+
+.broider {
+    border-image:  url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFQAAABUCAYAAAAcaxDBAAABqElEQVR4Xu3bQY7CMBBE0eT+hwa2BCF3d/0kivRni1N2vxRmNfvmHyqwo2mGbYLCJRBUUFgAjrOhgsICcJwNFRQWgONsqKCwABxnQx8I+oLPfHVcq3StxcNJBB3C/XtMUEG/BFrf4tbiIvSqkWfsWTxaadnx/K3zthaXjrNtghahqssErUoV1wlahKr+ih+vkehOCs82eTw6L3GHrg6w+nwy9JnPROcV9PfVCArX9XLQ1Y/Oaj7iW7HaI/k8mm8yXLThZ9LJnglQ99lovslw0YaCri/tbgMmL7G7R7I+KsxkuOjSTia96FlBYWhBBYUF4DgbKigsAMfZUEFhATjOhgoKC8BxNlRQWACOs6GCwgJwnA0VFBaA42yooLAAHGdDBYUF4DgbKigsAMfZUEFhATjOhgoKC8BxNlRQWACOs6GCwgJwnA0VFBaA42yooLAAHGdDBYUF4DgbKigsAMfZUEFhATju9obC8zw7jvjHr2cLwKcXVFBYAI6bNLR7hOiS725293pB4TcgqKCwABxnQwWFBeA4GyooLADH2VBBYQE4zoYKCgvAcW/yqIAZzrdtfAAAAABJRU5ErkJggg==') 28 /  28px / 0 round;
+    border-width:  28px;
+    border-style:  solid;
+  }
+  
+
+
+.container {
+	background-color: rgba(0, 20, 20, 0.784); 
+		border: 3px outset rgba(3, 10, 10, 0.65); 
+		width: fit-content;
+		padding: 20px 20px;
+		max-width: 816px;
+		min-width: 200px;
+		position: relative;
+		margin: 2%;
+  }
+
+.container.nav {padding: 5px 20px;
+}
+
+.container.img {padding: 0px 0px;
+}
+
+.frog {
+  position: absolute;
+  top: -60px; /* Adjust to sit above the container */
+  left: 5%; /* Center the frog horizontally relative to the container */
+  transform: translateX(-50%); /* Correct horizontal alignment */
+  width:20%; /* Adjust as needed */
+  height: auto; /* Maintain aspect ratio */
+  z-index: 10; /* Ensure it stays on top of other elements */
+}
+
+
+
+
+@media screen and (max-width: 600px){
+	h1, h2, h3, h4, h5, h6, p, table, details, cite, blockquote, hr {
+		margin: 8px 8px;
+	}
+
+	p, ol, ul, dl, code, details, table { font-size:0.9rem; }
+}
