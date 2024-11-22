@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!--TO DO :
+Page with 3D like gif of things i did (like legos)
+Could do it for books even ! Or maybe butterflies
+Zoom on butterfly wings
+-->
 <style>
 
 img { max-width: 100% }
@@ -55,6 +59,37 @@ body {
 	
 }
 
+a:link {
+  text-decoration : wavy underline;
+  color:rgb(164, 190, 159);
+}
+
+a:visited {
+  text-decoration : wavy underline;
+  color:rgb(164, 190, 159);
+}
+
+a:hover {
+  text-decoration: underline;
+  
+}
+
+#sidenav {
+  height: 50%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 25%;
+  left: 0;
+  background-color:rgb(26, 50, 28);
+  overflow-x: hidden;
+  padding-top: 20px;
+  border-top-right-radius: 100%;
+  border-bottom-right-radius: 100%;
+  color: white;
+  border: 2px solid rgb(12, 35, 11);
+}
+
 .example-image-gallery {
 	padding: 0% 20%;
 	display: flex;
@@ -77,7 +112,41 @@ body {
 		right: 0px;
 		margin: auto;
 	}
+
+	h1 {
+		font-size: 8vw;
+	}
 }
+
+.hvr-outline-out {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+
+}
+.hvr-outline-out:before {
+  content: '';
+  position: absolute;
+  border: #000000 solid 4px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: top, right, bottom, left;
+  transition-property: top, right, bottom, left;
+}
+.hvr-outline-out:hover:before, .hvr-outline-out:focus:before, .hvr-outline-out:active:before {
+  top: -8px;
+  right: -8px;
+  bottom: -8px;
+  left: -8px;
+}
+
+
 
 </style>
 
@@ -94,6 +163,7 @@ body {
   
 
 <body>	
+
 	<center>
 		<section class="menu">
 		<header style="margin-top: 40px;">
@@ -102,25 +172,41 @@ body {
 			<p class="shadow_drop">Welcome !</p>
 		</header>
 	
-		<nav class="nav_top">
+		<nav class="nav_top">	
 
-				<nav class= container style="background-color:rgba(55, 105, 58, 0.9); border-top-left-radius:20px;border-top-right-radius: 20px; margin-top: 5px;">MENU</nav>
-				
-				<nav class= container style="margin-top: 20px;">
-					<a href="diary.html" >
-						<!--<img src="images/microscope.png" alt="">-->
-						<span style="right:0px;color: rgb(164, 190, 159);">My research</span>
-					</a>
+				<nav class= "container" style="background-color:rgba(55, 105, 58, 0.9); border-top-left-radius:20px;border-top-right-radius: 20px;">
+					MENU
 				</nav>
 
-				<nav class= container style="margin-top: 20px;">
-					<a href="diary.html" >
+				<a href="research.html">
+				<nav class="container hvr-outline-out" style="margin-top:10px;margin-bottom:10px">
+					
 						<!--<img src="images/microscope.png" alt="">-->
-						<span style="right:0px;color: rgb(164, 190, 159);">My diary</span>
-					</a>
-				</nav>
+						<span style="position: relative; font-size: 1.5rem;right:0px;color: rgb(164, 190, 159)">My research</span>
 
-				<nav class= container style="background-color:rgba(55, 105, 58, 0.9); border-bottom-left-radius:20px;border-bottom-right-radius: 20px; margin-top: 5px;">     </nav>
+				</nav>
+				</a>
+
+				<a href="diary.html">
+				<nav class="container hvr-outline-out" style="margin-top:10px;margin-bottom:10px">
+					
+						<!--<img src="images/microscope.png" alt="">-->
+						<span style="position: relative; font-size: 1.5rem; right:0px;color: rgb(164, 190, 159)">My blog</span>
+					
+				</nav>
+				</a>
+
+				<a href="pictures.html">
+				<nav class="container hvr-outline-out" style="margin-top:10px;margin-bottom:10px">
+					
+						<!--<img src="images/microscope.png" alt="">-->
+						<span style="position: relative; font-size: 1.5rem; right:0px;color: rgb(164, 190, 159)">Pictures</span>
+					
+				</nav>
+				</a>
+
+				<nav class= "container" style="background-color:rgba(55, 105, 58, 0.9); border-bottom-left-radius:20px;border-bottom-right-radius: 20px;">    
+				</nav>
 				
 		</nav>
 	
@@ -142,7 +228,7 @@ body {
 				i hope i can make something interesting out of this, either fun facts or small tidbits of biological knowledge.</p>
 			</p>
 			<p class="justify">2. A (hopefully cool) photobook : i'm uploading many pictures i like, of my daily life, not matter how significant they are. </p>
-			<p class="justify">3. A diary : i'm also writing a blog/diary, as a small fun exercise, with hopefully real life benefits too !</p>
+			<p class="justify">3. A blog : i'm also writing a blog/diary, as a small fun exercise, with hopefully real life benefits too !</p>
 		</div>
 
 

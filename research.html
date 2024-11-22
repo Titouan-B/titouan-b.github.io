@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+	@font-face {
+    src: url("css/fonts/Jack.ttf");
+    font-family: "Jack";
+  }
+
+*{font-family: "Jack";}
+
+	img { max-width: 100% }
+
+    body {
+	background-color: #f7f4ef;
+
+    }
+
+	.rotate {
+		 width: fit-content;
+		 height: fit-content;
+		 display: inline-block;
+		 position: absolute;
+	}
+	.rotate:hover img, .rotate:focus img {
+		 transform: rotate(3deg);
+	}
+	.rotate:hover .text, a:focus .text {
+		 opacity: 1;
+	}
+
+	.text {
+		 filter: drop-shadow(1px 1px 0 black)
+		 drop-shadow(-1px 1px 0 black);
+		 font-family: "Seraphim";
+		 z-index: 99;
+	}
+	:root { overscroll-behavior: none; }
+	html { overflow-Y: scroll; }
+	body { padding: 0; }
+	h1 { margin: 0.5rem 0.5rem 0.25rem 0.5rem; }
+
+	h2 { padding: 10px;
+  		background: #879164;
+  		color: #fff; }
+
+	main { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; max-width: 100%; }
+	section { width: 30rem; max-width: 100%; margin: 1rem; }
+	main a { display: block; 
+		padding: 1rem; 
+		margin: 1.5rem 1rem; 
+		max-width: 100%; 
+		border: 3px double; 
+		font-size: 1.5rem; 
+		text-decoration: none; 
+		text-transform: lowercase; 
+		background: whitesmoke; 
+		opacity: 0.9; }
+
+	a p { font-size: 1rem; margin: 0.25rem 1rem;color: rgb(209, 109, 37); }
+	a time { display: block; margin: 0 0 0.5rem 0; font-size: 0.6em; border: none; padding: 0; text-align: left; }
+	img { display: block; margin:auto; position: sticky; top: 40%; }
+	input { margin-left: 0.5rem; }
+	main a::after {
+		display: block;
+		text-align: right;
+		font-size: 0.6em; 
+		margin-top: 0.5rem;
+	}
+
+
+	.main_text {
+		color: #58412D;
+		text-align: justify;
+		line-height: 125%;
+		font-family: "Jack";
+	}
+
+	.dotted_container {
+	
+		border: 3px dotted #58412D;
+		padding: 10px 10px 10px 20px;
+		margin: 10px 10px 10px -30px;
+	}
+</style>
+
+
+<head>
+  
+    <title>research | SPECIATI.on</title>
+	
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css" media="all">
+
+</head>
+
+
+<body>	
+<center>
+<div style="width: clamp(310px, 85%, 560px);">
+	<header style="margin-top: 30px;width: fit-content;">
+		<a href="index.html" style="color: #58412D; font-size: 1rem;">Home ?</a>
+		<h1 class="text" style="margin: 0px; color: #58412D;font-size: 2em;">SPECIATI.on</h1>
+	</header>
+
+	<h2>What are you doing ?</h2>
+	
+	<div class="main_text">
+		I started my PhD in 2023 in Paris, working in evolutionnary ecology. I'm mainly interested in the mechanisms behind <a href="#">speciation</a>, my lab being specialized into neo-tropical butterflies. 
+		I am myself working on the genus Morpho, a small genus of only 30 species ! I am trying to understand if emergence of new species can be conditioned by differences in activity timings inside populations.
+		<i>Add a phylogentic tree here</i>
+	</div>
+
+	<h2>The Morpho genus ?</h2>
+	<div class="main_text">
+	Morpho butterflies are one of the poster childs of the <i>Lepidoptera</i> genus ! As they are quite large and arbor a bright iridescent blue (in most species), they are quite popular among collectors and amateurs alike. 
+	But funnily enough, all this public attention does not translate into the research world quite as well. 
+	<i>Add a morpho picture here</i>
+	</div>
+
+	<h2>Why are they so blue ?</h2>
+	<div class="main_text">
+	As you may have noticed, the shade of blue reflected in Morpho wings changes depending on the angle you look at them ! 
+	This is color is indeed not a <i>physical</i> (pigment) color, but a </i>structural</i> color. 
+	This means that it is the structure and arangement of the scales themselve that make it so only blue light is reflected. Think of it like a some kind of weird reverse prism, where instead of turning white light into a rainbow, it turns it into a single color.
+	<i>Add Morpho + zoom on scales here</i>
+	</div>
+
+	<h2>What are you working on right now ?</h2>
+	<div class="main_text">
+	As of now, my work has been focused in three areas:
+	<ul class="main_text">
+		<div class="dotted_container">
+		<li><b>Collecting data on the activity timings of Morpho species in the wild</b></li>
+			<p class="main_text">The fun part ! Going to South America inside the jungle to catch butterflies ! While you are totally disconnected (litteraly no phone signal), it is incredible. 
+				<i>Add a picture here ?</i>
+			<details>
+			<summary>
+				Here is what you need to survive in the Amazonian rainforest:
+			</summary>
+				A hammoc, a machete, a notebook, a flashlight, a nice pair of hiking shoes, and then as many books as you can fit in the rest of your baggages, because you are going to be lonely out here.
+		</details>
+			</p>
+		</div>
+
+		<div class="dotted_container" style="border-color: rgb(198, 98, 62);">
+		<li><b>Modelling activity timings and speciation</b></li>
+		<p class="main_text">Beep boop beep boop ! Surprise ! A lot of biological research is based on modelling... So get those fingers typing code, and this brain solving equations, because we need models for everything in this field !
+			Thankfully for me, coding is one of my favorite things to do, so it's not that bad. Running thousands of simulations on a supercomputer does sound cool when you think about it.
+			My first paper (currently in review, so fingers crossed), is showing how having variations in activity timings inside a population can lead to the emergence of new species. This is only based on simulations, and yet to be proven in real life though.
+			Let's hope than I can achieve that before the end of my PhD.
+		</p>
+		</div>
+
+
+		<div class="dotted_container" style="border-color:rgb(252, 138, 97);">
+		<li><b>Trying to tie biotic/abiotic variables to the activity timing</b></li>
+		<p class="main_text">
+			<i>Coming soon !</i>
+		</p>
+		</div>
+	</ul>
+	</div>
+
+
+
+
+</div>
+
+</body>
+</html>
