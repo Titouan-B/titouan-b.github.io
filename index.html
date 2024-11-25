@@ -4,6 +4,7 @@
 Page with 3D like gif of things i did (like legos)
 Could do it for books even ! Or maybe butterflies
 Zoom on butterfly wings
+Associate image and music page
 -->
 <style>
 
@@ -51,6 +52,22 @@ body {
 	font-family: "Seraphim";
 	position: fixed;
 	top: 100px; left: 25px;
+	width: 200px;
+	text-align: center;
+	margin: 0.1rem 0.5rem 0.5rem;
+	display: flex;
+	flex-direction: column;
+	
+}
+
+.nav_bottom {
+	
+	color: white;
+	letter-spacing: 2px;
+	font-size: 2rem;
+	font-family: "Seraphim";
+	position: fixed;
+	top: 100px; right: 25px;
 	width: 200px;
 	text-align: center;
 	margin: 0.1rem 0.5rem 0.5rem;
@@ -145,7 +162,9 @@ a:hover {
   bottom: -8px;
   left: -8px;
 }
-
+svg {
+      cursor: pointer;
+    }
 
 
 </style>
@@ -214,10 +233,14 @@ a:hover {
 			<p class="justify" >
 			Hello, I'm (currently) a PhD student in evolutionnary biology, looking to share my life on this site ! You will find cool pictures of my adventures, passions and more here !
 			This website is a work in progress, so please be patient with me ! I'm learning HTML and CSS as i go, so it's a bit of a mess right now. This website if a side project of my own, and i hope i can make something good out of it. Thanks ! 
-	</p>
+	</p>	
+		
 			<div style="position: absolute; top: -90px; right: 680px; width:20%;">
+			<!--  <button popovertarget="morpho" type="submit"> -->
 				<img src="images/morpho2.png">
 			</div>
+		
+			<div popover id="morpho" class="container">Heho</div>
 	
 		</div>
 		
@@ -231,6 +254,16 @@ a:hover {
 			<p class="justify">3. A blog : i'm also writing a blog/diary, as a small fun exercise, with hopefully real life benefits too !</p>
 		</div>
 
+
+		<nav class="nav_bottom">	
+			<a href="https://www.youtube.com/watch?v=1F3OGIFnW1k" style="text-decoration: none;">
+			<nav class= "container" style="background-color:rgba(55, 105, 58, 0.9)">
+				<p>Current song</p>
+				<img src="images/song1.png" alt="">
+				<p><i>Stromae, Pomme</i> - Ma Meilleure Ennemie</p>
+			</nav>
+			</a>
+		</nav>
 
 	</section>
 	</center>
