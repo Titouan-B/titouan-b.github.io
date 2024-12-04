@@ -2,12 +2,17 @@
 <html lang="en">
 
 <style>
+	@font-face {
+    src: url("css/fonts/Jack.ttf");
+    font-family: "Jack";
+  }
+
+*{font-family: "Jack";}
 
 	img { max-width: 100% }
 
     body {
-	background-image: url("images/mountains.png");
-	background-size: cover;
+	background-color: #f7f4ef;
 
     }
 
@@ -25,24 +30,20 @@
 	}
 
 	.text {
-		 opacity: 0;
-		 position: absolute;
-		 transform: translate(0%, 0%);
-		 font-size: calc(1em + 1.75vw);
-		 color: #ffffff;
 		 filter: drop-shadow(1px 1px 0 black)
-			drop-shadow(-1px 1px 0 black) 
-			drop-shadow(1px -1px 0 black) 
-			drop-shadow(-1px -1px 0 black);
-		font-family: "Seraphim";
-		
+		 drop-shadow(-1px 1px 0 black);
+		 font-family: "Seraphim";
 		 z-index: 99;
 	}
 	:root { overscroll-behavior: none; }
 	html { overflow-Y: scroll; }
 	body { padding: 0; }
 	h1 { margin: 0.5rem 0.5rem 0.25rem 0.5rem; }
-	h2 { color: white; font-size: 2rem; text-transform: lowercase; text-shadow: 0 -1px #000, 1px 0 #000, 0 1px #000, -1px 0 #000; filter: drop-shadow(2px 2px 0 #7EC5CE) drop-shadow( -2px 2px 0 #7EC5CE) drop-shadow( 2px -2px 0 #7EC5CE) drop-shadow( -2px -2px 0 #7EC5CE); }
+
+	h2 { padding: 10px;
+  		background: #879164;
+  		color: #fff; }
+
 	main { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; max-width: 100%; }
 	section { width: 30rem; max-width: 100%; margin: 1rem; }
 	main a { display: block; 
@@ -66,12 +67,27 @@
 		font-size: 0.6em; 
 		margin-top: 0.5rem;
 	}
+
+
+	.main_text {
+		color: #58412D;
+		text-align: justify;
+		line-height: 125%;
+		font-family: "Jack";
+	}
+
+	.dotted_container {
+	
+		border: 3px dotted #58412D;
+		padding: 10px 10px 10px 20px;
+		margin: 10px 10px 10px -30px;
+	}
 </style>
 
 
 <head>
   
-    <title>blog | SPECIATI.on</title>
+    <title>about | SPECIATI.on</title>
 	
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="UTF-8">
@@ -82,26 +98,22 @@
 
 <body>	
 <center>
+<div style="width: clamp(310px, 85%, 560px);">
 	<header style="margin-top: 30px;width: fit-content;">
-		<a href="index.html" style="color: white; font-size: 1rem;">Home ?</a>
-		<h1 style="margin: 0px;">SPECIATI.on</h1>
-		<p>Blog.</p>
+		<a href="index.html" style="color: #58412D; font-size: 1rem;">Home ?</a>
+		<h1 class="text" style="margin: 0px; color: #58412D;font-size: 2em;">SPECIATI.on</h1>
 	</header>
-<main>
-<section>
 
-	<a href="Diary/20_11_24.html">
-		<time>2024/11/20</time>
-		first entry
-		<p>making a blog for the first time</p>
-		</a>
-
+	<h2>Who are you ?</h2>
+	
+	<div class="main_text">
+		I'm an Utonia, an avid biology enthusiast (and nerd), doing a PhD in Paris. My domain of expertise is in evolutionnary ecology. I was one of the first humans of the 21st century, and grew along the internet.
+		I like indie pop rock, sweets, nature, and my cat Calypso.
+	</div>
 
 
 
-
-</section>
-</main>
+</div>
 
 </body>
 </html>

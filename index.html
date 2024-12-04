@@ -135,33 +135,7 @@ a:hover {
 	}
 }
 
-.hvr-outline-out {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 
-}
-.hvr-outline-out:before {
-  content: '';
-  position: absolute;
-  border: #000000 solid 4px;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: top, right, bottom, left;
-  transition-property: top, right, bottom, left;
-}
-.hvr-outline-out:hover:before, .hvr-outline-out:focus:before, .hvr-outline-out:active:before {
-  top: -8px;
-  right: -8px;
-  bottom: -8px;
-  left: -8px;
-}
 svg {
       cursor: pointer;
     }
@@ -223,6 +197,15 @@ svg {
 					
 				</nav>
 				</a>
+
+				<a href="about.html">
+					<nav class="container hvr-outline-out" style="margin-top:10px;margin-bottom:10px">
+						
+							<!--<img src="images/microscope.png" alt="">-->
+							<span style="position: relative; font-size: 1.5rem; right:0px;color: rgb(164, 190, 159)">About</span>
+						
+					</nav>
+					</a>
 
 				<nav class= "container" style="background-color:rgba(55, 105, 58, 0.9); border-bottom-left-radius:20px;border-bottom-right-radius: 20px;">    
 				</nav>

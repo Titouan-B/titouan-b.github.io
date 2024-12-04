@@ -13,54 +13,129 @@
 	</head>
 <style>
 
-	img { max-width: 100% }
+img { max-width: 100% }
 
-    body {
-	background-image: url("images/mountains.png");
-	background-size: cover;
+body {
+background-image: url("images/mountains.png");
+background-size: cover;
+}
 
-    }
 
-	body { padding: 0; }
-	h1 { margin: 0.5rem 0.5rem 0.25rem 0.5rem; }
-	img { width: 100%;margin-bottom: 1em; }
+h1 { margin: 0.5rem 0.5rem 0.25rem 0.5rem; }
+img { width: 100%;margin-bottom: 1em; }
 
 
 .gallery {
-	columns:200px;
+	columns:250px;
 }
 
-.tooltip {
-  position: relative;
-  display: inline-block;
-  cursor: default;
+.modal-btn {
+transition: background 250ms;
+border-radius: 4px;
+background-color: #0f0f0f;
+color: #fcfcfc;
+text-transform: uppercase;
+font-size: 12px;
+letter-spacing: 0.1em;
+display: inline-block;
+text-decoration: none;
+
 }
 
-.tooltip .tooltiptext {
-  visibility: hidden;
-  padding: 0.25em 0.5em;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 0.25em;
-  white-space: nowrap;
-  
-  /* Position the tooltip */
-  position: absolute;
-  z-index: 1;
-  top: 100%;
-  left: 100%;
-  transition-property: visibility;
-  transition-delay: 0s;
+.modal-btn:hover {transform: rotate(5deg);}
+.modal-btn:focus {
+background-color: #0f0f0fdd;
 }
 
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-  transition-delay: 0.1s;
+.modal {
+position: fixed;
+min-height: 100vh;
+width: 100%;
+top: 0;
+left: 0;
+display: flex;
+z-index: 2;
 }
 
+.modal-overlay {
+width: 100%;
+height: 100%;
+position: absolute;
+background-color: rgba(0, 0, 0, 0.5);
+left: 0;
+}
+
+.modal-content {
+transition: transform 1s;
+background: #342e2e6a;
+
+width: 50%;
+position: relative;
+margin: auto;
+border-radius: 50px;
+max-width: 1000px;
+}
+
+.modal-close {
+font-size: 36px;
+text-decoration: none;
+color: inherit;
+position: absolute;
+right: 24px;
+top: 10px;
+}
+
+.modal:not(:target) {
+display: none;
+}
+
+.modal:not(:target) {
+visibility: hidden;
+transition-delay: 500ms;
+transition-property: visibility;
+}
+
+.modal:target .modal-content {
+transform: translateY(100vh);
+animation: 500ms ease-in-out slideUp forwards;
+}
+
+.modal:not(:target) .modal-content {
+transform: translateY(0);
+animation: 500ms ease-out slideDown forwards;
+}
+
+.modal:target .modal-overlay {
+opacity: 0;
+animation: 500ms linear fadeIn forwards;
+}
+
+.modal-content img {margin-bottom: 0;
+max-width: 50%;}
+
+.modal-content p {padding: 0px 5px;color: whitesmoke;}
+
+
+@keyframes fadeOut {
+from {opacity: 1;}
+to {opacity: 0;}
+}
+
+@keyframes fadeIn {
+from {opacity: 0;}
+to {opacity: 1;}
+}
+
+@keyframes slideUp {
+from {transform: translateY(100vh);}
+to {transform: translateY(0);}
+}
+
+@keyframes slideDown {
+from {transform: translateY(0);}
+to {transform: translateY(100vh);}
+}
 	</style>
-
 <body>	
 
 
@@ -73,21 +148,64 @@
 <div style="width: clamp(600px, 85%, 800px);">
 <div class="gallery">
 
-	<div class="tooltip">
-		<img src="images/anakin.JPG">
-		<span class="tooltiptext">text</p>
-	</div>
+	<a class="modal-btn" href="#modal" style="background-color: transparent;">
+		<img src="images/anakin-min.JPG">
+	</a>
+
+	<section role="dialog" class="modal" id="modal" aria-labelledby="modal-title">
+		<a class="modal-overlay" href="#" tabindex="-1"></a>
+		<div class="modal-content">
+		  <a title="Close modal" aria-label="Close modal" href="#" class="modal-close">&times; </a>
+		  <img src="images/anakin-min.JPG">
+		  <p>Anakin is the black cat at my parents house. He's getting old, but is still very sweet.</p>
+		</div>
+	</section>
+	  
+	<a class="modal-btn" href="#modal1" style="background-color: transparent;">
+		<img src="images/caly1-min.jpg">
+	</a>
+
+	<section role="dialog" class="modal" id="modal1" aria-labelledby="modal-title">
+		<a class="modal-overlay" href="#" tabindex="-1"></a>
+		<div class="modal-content">
+		  <a title="Close modal" aria-label="Close modal" href="#" class="modal-close">&times; </a>
+		  <img src="images/caly1-min.JPG">
+		  <p>Calypso is my young cat that fill my daily life ! Not even 3 years old and she has seen a lot of the world already. She's quite a yapper and a maybe has ADHD.</p>
+		</div>
+	</section>
 
 
+	<a class="modal-btn" href="#modal2" style="background-color: transparent;">
+		<img src="images/caly_young-min.jpg">
+	</a>
 
-	<img src="images/caly1.jpg">
-	<img src="images/caly_young.jpg">
-	<img src="images/IMG_8715.jpg">
-	<img src="images/IMG_7474.jpg">
-	<img src="images/IMG_7477.jpg">
-	<img src="images/IMG_8524.jpg">	
-	<img src="images/IMG_8657.jpg">
-	<img src="images/IMG_8700.jpg">
+	<section role="dialog" class="modal" id="modal2" aria-labelledby="modal-title">
+		<a class="modal-overlay" href="#" tabindex="-1"></a>
+		<div class="modal-content">
+		  <a title="Close modal" aria-label="Close modal" href="#" class="modal-close">&times; </a>
+		  <img src="images/caly_young-min.JPG">
+		  <p>My young cat Calypso right after I adopted her ! Very small kitten, already a look of mischief in her eyes.</p>
+		</div>
+	</section>
+
+	<a class="modal-btn" href="#modal3" style="background-color: transparent;">
+		<img src="images/IMG_8715-min.jpg">
+	</a>
+
+	<section role="dialog" class="modal" id="modal3" aria-labelledby="modal-title">
+		<a class="modal-overlay" href="#" tabindex="-1"></a>
+		<div class="modal-content">
+		  <a title="Close modal" aria-label="Close modal" href="#" class="modal-close">&times; </a>
+		  <img src="images/IMG_8715-min.JPG">
+		  <p>A small sleeping frog I saw while in the Amazonian jungle. Probably from the <i>Phyllomedusa</i> genus, not sure about the specific species though.</p>
+		</div>
+	</section>
+
+	<img src="images/IMG_7474-min.jpg">
+	<img src="images/IMG_7477-min.jpg">
+	<img src="images/IMG_8524-min.jpg">	
+	<img src="images/IMG_8657-min.jpg">
+	<img src="images/IMG_8700-min.jpg">
 
 </div>
 </div>
