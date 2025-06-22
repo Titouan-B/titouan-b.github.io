@@ -1,292 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--TO DO :
-Page with 3D like gif of things i did (like legos)
-Could do it for books even ! Or maybe butterflies
-Zoom on butterfly wings
-Associate image and music page
--->
+
 <style>
+	@font-face {
+    src: url("css/fonts/Jack.ttf");
+    font-family: "Jack";
+  }
 
-img { max-width: 100% }
+*{font-family: "Jack";}
 
-body {
-	background-image: url("images/dither_forest3-min.png");
-	
+	img { max-width: 100% }
 
-}
-.menu {position: relative;
-}
+    body {
+	background-color: #f7f4ef;
 
-.rotate {
-		width: fit-content;
-		height: fit-content;
-		display: inline-block;
-		position: absolute;
-}
-.rotate:hover img, .rotate:focus img {
-		transform: rotate(3deg);
-}
-.rotate:hover .text, a:focus .text {
-		opacity: 1;
-}
-.shadow_drop {filter: drop-shadow(1px 1px 0 black) 
-	drop-shadow(-1px 1px 0 black) 
-	drop-shadow(1px -1px 0 black) 
-	drop-shadow(-1px -1px 0 black);
-	letter-spacing: 1px;
-
-}
-
-.justify {
-  text-align: justify;
-  text-justify: inter-word;	
-  letter-spacing: 0px;
-}
-
-.nav_top {
-	
-	color: white;
-	letter-spacing: 2px;
-	font-size: 2rem;
-	font-family: "Seraphim";
-	position: fixed;
-	top: 100px; left: 25px;
-	width: 200px;
-	text-align: center;
-	margin: 0.1rem 0.5rem 0.5rem;
-	display: flex;
-	flex-direction: column;
-	
-}
-
-.nav_bottom {
-	
-	color: white;
-	letter-spacing: 2px;
-	font-size: 2rem;
-	font-family: "Seraphim";
-	position: fixed;
-	top: 100px; right: 25px;
-	width: 200px;
-	text-align: center;
-	margin: 0.1rem 0.5rem 0.5rem;
-	display: flex;
-	flex-direction: column;
-	
-}
-
-a:link {
-  text-decoration : wavy underline;
-  color:rgb(164, 190, 159);
-}
-
-a:visited {
-  text-decoration : wavy underline;
-  color:rgb(164, 190, 159);
-}
-
-a:hover {
-  text-decoration: underline;
-  
-}
-
-#sidenav {
-  height: 50%;
-  width: 200px;
-  position: fixed;
-  z-index: 1;
-  top: 25%;
-  left: 0;
-  background-color:rgb(26, 50, 28);
-  overflow-x: hidden;
-  padding-top: 20px;
-  border-top-right-radius: 100%;
-  border-bottom-right-radius: 100%;
-  color: white;
-  border: 2px solid rgb(12, 35, 11);
-}
-
-.example-image-gallery {
-	padding: 0% 20%;
-	display: flex;
-	justify-content: space-around;
-}
-
-@media screen and (max-width: 1100px){ 
-	.nav_top {
-		display: block;
-		position: relative;
-		top: 20px;
-		left: 0px;
-		margin: auto;
-	}
-
-	.nav_bottom {
-		display: block;
-		position: relative;
-		top: 0px;
-		right: 0px;
-		margin: auto;
-	}
-
-	h1 {
-		font-size: 8vw;
-	}
-}
-
-
-svg {
-      cursor: pointer;
     }
 
+	.rotate {
+		 width: fit-content;
+		 height: fit-content;
+		 display: inline-block;
+		 position: absolute;
+	}
+	.rotate:hover img, .rotate:focus img {
+		 transform: rotate(3deg);
+	}
+	.rotate:hover .text, a:focus .text {
+		 opacity: 1;
+	}
 
+	.text {
+		 filter: drop-shadow(1px 1px 0 black)
+		 drop-shadow(-1px 1px 0 black);
+		 font-family: "Seraphim";
+		 z-index: 99;
+	}
+	:root { overscroll-behavior: none; }
+	html { overflow-Y: scroll; }
+	body { padding: 0; }
+	h1 { margin: 0.5rem 0.5rem 0.25rem 0.5rem; }
+
+	h2 { padding: 10px;
+  		background: #879164;
+  		color: #fff; }
+
+	main { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; max-width: 100%; }
+	section { width: 30rem; max-width: 100%; margin: 1rem; }
+	main a { display: block; 
+		padding: 1rem; 
+		margin: 1.5rem 1rem; 
+		max-width: 100%; 
+		border: 3px double; 
+		font-size: 1.5rem; 
+		text-decoration: none; 
+		text-transform: lowercase; 
+		background: whitesmoke; 
+		opacity: 0.9; }
+
+	a p { font-size: 1rem; margin: 0.25rem 1rem;color: rgb(209, 109, 37); }
+	a time { display: block; margin: 0 0 0.5rem 0; font-size: 0.6em; border: none; padding: 0; text-align: left; }
+	img { display: block; margin:auto; position: sticky; top: 40%; }
+	input { margin-left: 0.5rem; }
+	main a::after {
+		display: block;
+		text-align: right;
+		font-size: 0.6em; 
+		margin-top: 0.5rem;
+	}
+
+
+	.main_text {
+		color: #58412D;
+		text-align: justify;
+		line-height: 125%;
+		font-family: "Jack";
+	}
+
+	.dotted_container {
+	
+		border: 3px dotted #58412D;
+		padding: 10px 10px 10px 20px;
+		margin: 10px 10px 10px -30px;
+	}
+
+	@keyframes diabounce {
+                0%   {top:-10px;}
+                50%  {top:-2px;}
+                100% {top:-10px;}
+	}
 </style>
+
 
 <head>
   
-    <title>Home | SPECIATI.on</title>
-	<link rel="icon" type="image/png" href="images/leaf.png">
+    <title>main | SPECIATI.on</title>
+	
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="UTF-8">
     <link href="css/styles.css" rel="stylesheet" type="text/css" media="all">
 
 </head>
 
-  
 
 <body>	
 
-	<center>
-		<section class="menu">
-		<header style="margin-top: 40px;">
-			
-			<h1 class="shadow_drop" style="margin: 0px;">SPECIATI.on</h1>
-			<p class="shadow_drop">Welcome !</p>
-		</header>
+
+
+
+<div style="width: clamp(310px, 85%, 560px);">
 	
-		<nav class="nav_top">	
-
-				<nav class= "container" style="background-color:rgba(55, 105, 58, 0.9); border-top-left-radius:20px;border-top-right-radius: 20px;">
-					MENU
-				</nav>
-
-				<a href="research.html">
-				<nav class="container hvr-outline-out" style="margin-top:10px;margin-bottom:10px">
-					
-						<!--<img src="images/microscope.png" alt="">-->
-						<span style="position: relative; font-size: 1.5rem;right:0px;color: rgb(164, 190, 159)">My research</span>
-
-				</nav>
-				</a>
-
-				<a href="diary.html">
-				<nav class="container hvr-outline-out" style="margin-top:10px;margin-bottom:10px">
-					
-						<!--<img src="images/microscope.png" alt="">-->
-						<span style="position: relative; font-size: 1.5rem; right:0px;color: rgb(164, 190, 159)">My blog</span>
-					
-				</nav>
-				</a>
-
-				<a href="pictures.html">
-				<nav class="container hvr-outline-out" style="margin-top:10px;margin-bottom:10px">
-					
-						<!--<img src="images/microscope.png" alt="">-->
-						<span style="position: relative; font-size: 1.5rem; right:0px;color: rgb(164, 190, 159)">Pictures</span>
-					
-				</nav>
-				</a>
-
-				<a href="about.html">
-					<nav class="container hvr-outline-out" style="margin-top:10px;margin-bottom:10px">
-						
-							<!--<img src="images/microscope.png" alt="">-->
-							<span style="position: relative; font-size: 1.5rem; right:0px;color: rgb(164, 190, 159)">About</span>
-						
-					</nav>
-					</a>
-
-				<nav class= "container" style="background-color:rgba(55, 105, 58, 0.9); border-bottom-left-radius:20px;border-bottom-right-radius: 20px;">    
-				</nav>
-				
-		</nav>
-	
-		<div class="container" style="position: relative;margin-top: 50px;padding: 15px 50px;">
-			<p class="justify" >
-			Hello, I'm (currently) a PhD student in evolutionnary biology, looking to share my life on this site ! You will find cool pictures of my adventures, passions and more here !
-			This website is a work in progress, so please be patient with me ! I'm learning HTML and CSS as i go, so it's a bit of a mess right now. This website if a side project of my own, and i hope i can make something good out of it. Thanks ! 
-	</p>	
-		
-			<div style="position: absolute; top: -90px; right: 680px; width:20%;">
-			<!--  <button popovertarget="morpho" type="submit"> -->
-				<img src="images/morpho2.png">
-			</div>
-		
-			<div popover id="morpho" class="container">Heho</div>
-	
-		</div>
-		
-		<div class="container" style="position: relative;margin-top: 50px;padding: 15px 50px;">
-			<p style="letter-spacing: 1px;">
-			What you will currently find on this website : </p>
-			<p class="justify">1. My research : my phd is taking most if my time as of now, so i wish to condense it a bit into this website ! 
-				i hope i can make something interesting out of this, either fun facts or small tidbits of biological knowledge.</p>
-			</p>
-			<p class="justify">2. A (hopefully cool) photobook : i'm uploading many pictures i like, of my daily life, not matter how significant they are. </p>
-			<p class="justify">3. A blog : i'm also writing a blog/diary, as a small fun exercise, with hopefully real life benefits too !</p>
-		</div>
-
-
-		<nav class="nav_bottom">	
-			<a href="https://www.youtube.com/watch?v=1F3OGIFnW1k" style="text-decoration: none;">
-			<nav class= "container" style="background-color:rgba(55, 105, 58, 0.9)">
-				<p>Current song</p>
-				<img src="images/song1-min.png" alt="">
-				<p><i>Stromae, Pomme</i> - Ma Meilleure Ennemie</p>
-			</nav>
-			</a>
-		</nav>
-
-	</section>
-	</center>
-
-	<!--<a href="orycterops.html" 
-	class="rotate"
-	style="top: 67%;left: 20%; /">
-		<img src="images/frog.png" 
-		style="position: absolute;" 
-		alt="">
-		<span class="text">My research</span>
-	</a>
-
-	<a href="orycterops.html" 
-	class="rotate"
-	style="top: 67%;left: 40%; /">
-		<img src="images/frog.png" 
-		style="position: absolute;" 
-		alt="">
-		<span class="text">My photobook</span>
-	</a>
-
-	<a href="orycterops.html" 
-	class="rotate"
-	style="top: 67%;left: 60%; /">
-		<img src="images/frog.png" 
-		style="position: absolute;" 
-		alt="">
-		<span class="text">My diary</span>
-	</a>-->
+	<div class="main_text dotted_container">
+		Titouan Bouinier
+	</div>
+	<div class="main_text dotted_container">
+		Science
+	</div>
 
 
 
-
-	
-	
-
-
-
-
+</div>
 
 </body>
 </html>

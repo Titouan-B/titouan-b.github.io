@@ -82,6 +82,12 @@
 		padding: 10px 10px 10px 20px;
 		margin: 10px 10px 10px -30px;
 	}
+
+	@keyframes diabounce {
+                0%   {top:-10px;}
+                50%  {top:-2px;}
+                100% {top:-10px;}
+	}
 </style>
 
 
@@ -97,6 +103,9 @@
 
 
 <body>	
+
+
+
 <center>
 <div style="width: clamp(310px, 85%, 560px);">
 	<header style="margin-top: 30px;width: fit-content;">
@@ -104,10 +113,10 @@
 		<h1 class="text" style="margin: 0px; color: #58412D;font-size: 2em;">SPECIATI.on</h1>
 	</header>
 
-	<h2>Who are you ?</h2>
+	<img src="images/profile.jpg" class="dotted_container" alt="Me pic" style="width: 40%; margin: 0; position: relative; animation: diabounce 2s infinite ease-in-out;">
 	
-	<div class="main_text">
-		I'm an Utonia, an avid biology enthusiast (and nerd), doing a PhD in Paris. My domain of expertise is in evolutionnary ecology. I was one of the first humans of the 21st century, and grew along the internet.
+	<div class="main_text dotted_container">
+		Hi ! I'm an Utonia, an avid biology enthusiast (and nerd), doing a PhD in Paris. My domain of expertise is in evolutionnary ecology. I was one of the first humans of the 21st century, and grew along the internet.
 		I like indie pop rock, sweets, nature, and my cat Calypso.
 	</div>
 
