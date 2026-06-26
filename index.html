@@ -40,6 +40,7 @@ body {
   background-size: contain;     /* Make it fill the box */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Avoid tiling */
+  
 }
 
 .top-bar {
@@ -51,16 +52,22 @@ body {
   gap: 20px;
 }
 
+
+
 .profile {
   display: flex;
   align-items: center;
 }
 
+
 .profile img {
   height: 80px;
   border-radius: 8px;
   margin-right: 15px;
+  
 }
+
+
 
 .profile .text h1 {
   margin: 0;
@@ -143,6 +150,14 @@ body {
 .gallery-item:hover .title {
   opacity: 1;
 }
+
+.zoom-wrapper {
+  transform: scale(1);
+  transform-origin: top left;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
 </style>
 
 <head>
@@ -152,11 +167,12 @@ body {
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+   <div class="zoom-wrapper">
   <div class="container">
   <div class="header-box">
     <header class="top-bar">
       <div class="profile">
-        <img src="images/anakin-min.jpg" alt="Profile" />
+        <img class = "banner" src="images/anakin-min.jpg" alt="Profile" />
         <div class="text">
           <h1>TITOUAN BOUINIER</h1>
           <p>Science & Pictures</p>
@@ -179,6 +195,6 @@ body {
 		<a href="article1.html" class="gallery-item"><img src="images/eugenia.jpg" alt="Gallery Image 1" /><div class="title">EUGENIA</div></a>
 		<a href="article1.html" class="gallery-item"><img src="images/rethenor dorsal detail.jpg" alt="Gallery Image 1" /><div class="title">MENELAUS V2</div></a>
     </main>
- 
+ </div>
 </body>
 </html>

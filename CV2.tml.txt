@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Titouan BOUINIER | Evolutionary ecology</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background-image: url("images/mountains.png");
+      background-size: cover;
+  
+    }
+
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1rem 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* ── Hero ─────────────────────────────────────────────── */
+    #hero {
+      background: rgba(255, 255, 255, 0.88);
+      border-radius: 16px 16px 8px 8px;
+      overflow: hidden;
+      display: flex;
+      align-items: stretch;
+      min-height: 180px;
+    }
+
+    #portrait {
+      width: 160px;
+      flex-shrink: 0;
+      background: #3d6ccf url("full_size_im/Portraitperso.jpg") no-repeat bottom left / cover;
+    }
+
+    #hero-text {
+      padding: 1.5rem 1.5rem 1.5rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+
+    #hero-text h1 {
+      font-size: 1.35rem;
+      font-weight: normal;
+      color: #2f080d;
+      text-align: left;
+    }
+
+    #hero-text p {
+      font-size: 0.9rem;
+      color: #444;
+      font-style: italic;
+      font-family: sans-serif;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 0.25rem;
+    }
+
+    .links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-family: sans-serif;
+      color: #185fa5;
+      text-decoration: none;
+      padding: 4px 10px;
+      border: 1px solid #b5d4f4;
+      border-radius: 20px;
+      background: #e6f1fb;
+      transition: background 0.15s;
+    }
+
+    .links a:hover { background: #b5d4f4; }
+
+    /* ── About ─────────────────────────────────────────────── */
+    #about {
+      background: rgba(255, 255, 255, 0.82);
+      border-radius: 8px;
+      padding: 1.25rem 1.75rem;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: #222;
+      font-family: Georgia, serif;
+    }
+
+    #about .label {
+      font-family: sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 0.6rem;
+    }
+
+    /* ── Projects ──────────────────────────────────────────── */
+    #projects {
+      background: rgba(161, 161, 212, 0.7);
+      border-radius: 12px 40px;
+      padding: 1.5rem;
+    }
+
+    #projects h2 {
+      text-align: center;
+      color: #2f080d;
+      font-size: 1.2rem;
+      font-weight: normal;
+      letter-spacing: 0.04em;
+      margin-bottom: 1.25rem;
+      font-family: Georgia, serif;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 10px;
+      padding: 1.25rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    }
+
+    .project-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+    }
+
+    .project-icon.teal   { background: #d4f0e8; color: #0a6b52; }
+    .project-icon.indigo { background: #e6e4fc; color: #4a3fa8; }
+    .project-icon.coral  { background: #fce8e2; color: #9c3820; }
+
+    .project-card h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: sans-serif;
+      color: #1a1a2e;
+      line-height: 1.4;
+    }
+
+    .project-card p {
+      font-size: 0.8rem;
+      color: #666;
+      font-family: sans-serif;
+      line-height: 1.5;
+    }
+
+    /* ── Papers note ───────────────────────────────────────── */
+    #papers {
+      background: rgba(255, 255, 255, 0.78);
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      font-size: 0.9rem;
+      font-family: sans-serif;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 540px) {
+      #portrait { width: 100px; }
+      #hero-text h1 { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+
+<body>
+<main>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div id="portrait"></div>
+    <div id="hero-text">
+      <h1>Titouan Bouinier <span style="font-size:0.8rem; color:#888; font-family:sans-serif;">(he/him)</span></h1>
+      <p>Doctor in Evolutionary ecology &amp; Agronomical engineer</p>
+      <div class="links">
+        <a href="https://cv.hal.science/titouan-bouinier" target="_blank">
+          <i class="fa-solid fa-file-lines"></i> HAL CV
+        </a>
+        <a href="https://scholar.google.com/citations?user=mYnyD5wAAAAJ&hl=fr" target="_blank">
+          <i class="fa-brands fa-google-scholar"></i> Google Scholar
+        </a>
+        <a href="https://orcid.org/0009-0001-8671-4316" target="_blank">
+          <i class="fa-brands fa-orcid"></i> ORCID
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="label">About me</div>
+    I am interested in the many forces behind species divergence in sympatry.
+    During my PhD, I specifically showed how differences in temporal patterns alone can generate speciation,
+    combining field experiments and theoretical models.
+    I am particularly interested in the interactions between chronobiology and speciation.
+    As a personal goal, I'd love to work in polar regions (Arctic &amp; Antarctic), and study how drastic
+    changes in day length could shift gene flow over large ranges.
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects I worked on</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-icon teal">
+          <i class="fa-solid fa-clock"></i>
+        </div>
+        <h3>Morpho patrolling timings</h3>
+        <p>Field study of diel activity patterns in <em>Morpho</em> butterflies across South America.</p>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon indigo">
+          <i class="fa-solid fa-code-branch"></i>
+        </div>
+        <h3>Temporal divergence and speciation</h3>
+        <p>Theoretical models of allochrony as a driver of reproductive isolation in sympatry.</p>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon coral">
+          <i class="fa-solid fa-dna"></i>
+        </div>
+        <h3>Sex-determination and speciation</h3>
+        <p>How XY vs. ZW systems shape the speed at which reproductive barriers evolve.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Papers -->
+  <section id="papers">
+    Below you can find my published papers and ongoing work, with details on each project —
+    including ones I'd love to pursue in the future.
+  </section>
+
+</main>
+</body>
+</html>
