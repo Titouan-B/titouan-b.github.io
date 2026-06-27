@@ -123,6 +123,12 @@
       background: #3d6ccf url("full_size_im/Portraitperso.jpg") no-repeat 30% top / cover;
     }
 
+    #logo {
+      margin-left: auto;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+    }
     @media (max-width: 540px) {
       #hero { flex-direction: column; }
       #portrait {
@@ -130,6 +136,9 @@
         min-height: 220px;
         background-position: center top 40%;
         background-size: cover;
+      }
+      #logo {
+         padding: 0rem 5rem 0rem 0rem;
       }
     }
 
@@ -378,6 +387,12 @@
           <img src="images/PDF.svg" alt="CV link" style="height:16px; vertical-align:middle;">My CV
         </a>
       </div>
+    </div>
+    <div id="logo">
+      <picture>
+        <source media="(max-width: 540px)" srcset="full_size_im/CDF_MNHN_Mobile.svg" alt="Logos" style="height:50px; vertical-align:middle;">
+        <img src="full_size_im/CDF_MNHN_Logo.svg" alt="Logos" style="height:200px; vertical-align:middle;">
+      </picture>
     </div>
   </section>
 
