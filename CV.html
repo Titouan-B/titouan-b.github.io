@@ -292,7 +292,6 @@
       margin-bottom: 1rem;
     }
 
-    .paywalled:hover
 
     .pub-list { display: flex; flex-direction: column; gap: 0.9rem; }
 
@@ -348,17 +347,14 @@
     .tooltip {
       position: relative;
       display: inline-block;
-      border-bottom: 1px dotted black;
       cursor: pointer;
     }
     .tooltiptext {
-    width: 130px;
-    bottom: 100%;
-    left: 65%;
-    margin-left: -65px;
+    width: 330px;
+    margin: 0 0 0 10px ;
     visibility: hidden;
 
-    background-color: black;
+    background-color: rgba(131, 125, 125, 0.732);
     color: #fff;
     text-align: center;
     border-radius: 6px;
@@ -366,6 +362,7 @@
     position: absolute;
     z-index: 1;
     } 
+
     .tooltip:hover .tooltiptext {
   visibility: visible;
   } 
@@ -483,8 +480,14 @@
         <strong>Bouinier, T.</strong>, Arthur, B., Smadi, C., Llaurens, V.
         <span class="pub-title">Evolution of divergent daily temporal niches shaped by male–male competition can generate sympatric speciation.</span>
         <span class="pub-journal">Journal of Evolutionary Biology</span>, voag030.<br>
-        <a class="paywalled" href="https://doi.org/10.1093/jeb/voag030" target="_blank">https://doi.org/10.1093/jeb/voag030 ↗</a> <strong>|</strong> <a href="https://hal.science/hal-05644714v1/document" target="_blank">PDF</a> <strong>|</strong> <a href="https://hal.science/hal-05644714v1/preview/Supplementary%20material.pdf" target="_blank">Supplementary Material</a>
-      </div>
+        
+      <span class="tooltip">
+        <a href="https://doi.org/10.1093/jeb/voag030" target="_blank">https://doi.org/10.1093/jeb/voag030 ↗</a>
+        <strong>|</strong> <a href="https://hal.science/hal-05644714v1/document" target="_blank">PDF</a> <strong>|</strong> <a href="https://hal.science/hal-05644714v1/preview/Supplementary%20material.pdf" target="_blank">Supplementary Material</a>
+      
+        <span class="tooltiptext">Send me a message for the published version</span>
+      </span>
+        </div>
 
       <div class="pub">
         <span class="pub-badge published">Published · 2025</span><br>
@@ -492,8 +495,8 @@
         <span class="pub-title">Vertical and temporal niche partitioning in Amazonian butterflies: implications for the evolution of thermal tolerance.</span>
         <span class="pub-journal">Oikos</span>, e11567.<br>
 
-        <a  class="tooltip" href="https://doi.org/10.1002/oik.11567" target="_blank">https://doi.org/10.1002/oik.11567 ↗</a><span class="tooltiptext">Some tooltip text</span>
 
+        <a href="https://doi.org/10.1002/oik.11567" target="_blank">https://doi.org/10.1002/oik.11567 ↗</a>
         <div class="pub-child">
           <div class="pub-child-arrow">
             <svg width="24" height="40" viewBox="0 0 24 40" fill="none">
