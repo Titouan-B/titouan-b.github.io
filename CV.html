@@ -25,8 +25,8 @@
       right: 0;
       z-index: 100;
       background: rgba(255, 255, 255, 0.82);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
       border-bottom: 1px solid rgba(180, 180, 220, 0.35);
       display: flex;
       justify-content: center;
@@ -53,12 +53,11 @@
       padding-right: 1rem;
     }
 
-    #navbar .nav-spacer { grid-column: 2; }
 
     #navbar .nav-links {
       display: flex;
       gap: 4px;
-      grid-column: 3;
+      grid-column: 2;
     }
 
     #navbar .nav-links a {
@@ -78,14 +77,14 @@
     }
 
     /* Mobile: collapse to simple flex, name hidden, links centred */
-    @media (max-width: 480px) {
+    @media (max-width: 540px) {
       #navbar nav {
         display: flex;
         justify-content: center;
         padding: 0 0.5rem;
       }
       #navbar .nav-name  { display: none; }
-      #navbar .nav-spacer { display: none; }
+
       #navbar .nav-links {
         gap: 2px;
       }
@@ -124,12 +123,12 @@
       background: #3d6ccf url("full_size_im/Portraitperso.jpg") no-repeat 30% top / cover;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 540px) {
       #hero { flex-direction: column; }
       #portrait {
         width: 100%;
         min-height: 220px;
-        background-position: center top;
+        background-position: center top 40%;
         background-size: cover;
       }
     }
@@ -335,6 +334,7 @@
       border-left-color: #e8a090;
       flex: 1;
     }
+
   </style>
 </head>
 
@@ -344,7 +344,7 @@
   <div id="navbar">
     <nav>
       <span class="nav-name">Titouan Bouinier</span>
-      <div class="nav-spacer"></div>
+
       <div class="nav-links">
         <a href="#hero">Home</a>
         <a href="#about">About</a>
@@ -364,13 +364,18 @@
       <p>Doctor in Evolutionary ecology &amp; Agronomical engineer</p>
       <div class="links">
         <a href="https://cv.hal.science/titouan-bouinier" target="_blank">
-          <img src="images/HAL.svg" alt="HAL" style="height:14px; vertical-align:middle;"> HAL
+          <img src="images/HAL.svg" alt="HAL" style="height:14px; vertical-align:middle;">HAL
         </a>
         <a href="https://scholar.google.com/citations?user=mYnyD5wAAAAJ&hl=fr" target="_blank">
-          <img src="images/scholar.svg" alt="Google Scholar" style="height:16px; vertical-align:middle;">  Google Scholar
+          <img src="images/scholar.svg" alt="Google Scholar" style="height:16px; vertical-align:middle;">Google Scholar
         </a>
         <a href="https://orcid.org/0009-0001-8671-4316" target="_blank">
-          <img src="images/orcid.png" alt="ORCID" style="height:16px; vertical-align:middle;">  ORCID
+          <img src="images/orcid.png" alt="ORCID" style="height:16px; vertical-align:middle;">ORCID
+        </a>
+      </div>
+      <div class="links">
+        <a href="files/CV_BOUINIER_Titouan.pdf" target="_blank" download>
+          <img src="images/PDF.svg" alt="CV link" style="height:16px; vertical-align:middle;">My CV
         </a>
       </div>
     </div>
@@ -468,6 +473,14 @@
     </div>
   </section>
 
+
 </main>
+  <!-- Bottom text -->
+  <div style="position: relative">    
+
+      <div style="position: absolute; bottom: 10px; background-color: rgba(255, 255, 255, 0.586)">
+      Picture of the Alps taken by me, near Aussois in 2024. 
+      </div>
+  </div>
 </body>
 </html>
