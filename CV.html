@@ -6,8 +6,18 @@
   <link rel="icon" type="image/x-icon" href="images/Morpho_icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
+  
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html,body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
+}
+
 
     body {
       font-family: Georgia, 'Times New Roman', serif;
@@ -33,16 +43,15 @@
       justify-content: center;
     }
 
-    /* Desktop: 3-col grid — name | portrait-width spacer | links */
-    #navbar nav {
-
-      width: 100%;
-      padding: 0 1rem;
-      display: grid;
-      grid-template-columns: auto clamp(100px, 22vw, 195px) 1fr;
-      align-items: center;
-      height: 48px;
-    }
+   #navbar nav {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: auto auto; 
+  align-items: center;
+  height: 48px;
+}
 
     #navbar .nav-name {
       font-family: Georgia, serif;
@@ -51,7 +60,7 @@
       letter-spacing: 0.02em;
       white-space: nowrap;
       grid-column: 1;
-      padding-right: 1rem;
+
     }
 
 
@@ -78,6 +87,7 @@
     }
 
     /* Mobile: collapse to simple flex, name hidden, links centred */
+   /* Mobile: collapse to simple flex, name hidden, links centred */
     @media (max-width: 540px) {
       #navbar nav {
         display: flex;
@@ -93,7 +103,35 @@
         font-size: 0.72rem;
         padding: 5px 8px;
       }
-    }
+
+  
+  main { padding: 1rem 0.5rem; }
+
+  #hero {
+    flex-direction: column;
+  }
+
+  #portrait {
+    width: 100%;
+    height: 180px;
+    min-height: unset;
+    background-position: center top 30%;
+    background-size: cover;
+  }
+
+  #logo { display: none; }
+
+  #hero-text {
+    padding: 1rem;
+  }
+
+  #hero-text h1 { font-size: 1rem; }
+
+  .links a {
+    font-size: 0.72rem;
+    padding: 3px 8px;
+  }
+}
 
     /* offset anchor targets so they aren't hidden behind the navbar */
     :target { scroll-margin-top: 64px; }
@@ -126,7 +164,6 @@
 
     #logo {
       margin-left: auto;
-      padding: 1rem 1.25rem;
       display: flex;
       align-items: center;
     }
@@ -139,16 +176,16 @@
         background-size: cover;
       }
       #logo {
-         padding: 0rem 5rem 0rem 0rem;
+        justify-content: center;
       }
     }
 
     #hero-text {
       padding: 1.5rem 1.5rem 1.5rem 1.75rem;
-      display: flex;
+  
       flex-direction: column;
       justify-content: center;
-      gap: 0.6rem;
+
     }
 
     #hero-text h1 {
@@ -168,7 +205,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 0.25rem;
+      margin-top: 1.5rem;
     }
 
     .links a {
@@ -272,8 +309,7 @@
     .project-img {
       width: 100%;
       height: 140px;
-      object-fit: cover;
-      border-radius: 8px;
+      object-fit: contain;
     }
 
     /* ── Papers ────────────────────────────────────────────── */
@@ -392,7 +428,7 @@
   <section id="hero">
     <div id="portrait"></div>
     <div id="hero-text">
-      <h1>Titouan Bouinier <span style="font-size:0.8rem; color:#888; font-family:sans-serif;">(he/him)</span></h1>
+      <h1>Titouan Bouinier, PhD <span style="font-size:0.8rem; color:#888; font-family:sans-serif;">(he/him)</span></h1>
       <p>Doctor in Evolutionary ecology &amp; Agricultural engineer</p>
       <div class="links">
         <a href="https://cv.hal.science/titouan-bouinier" target="_blank">
@@ -404,8 +440,6 @@
         <a href="https://orcid.org/0009-0001-8671-4316" target="_blank">
           <img src="images/orcid.png" alt="ORCID" style="height:16px; vertical-align:middle;">ORCID
         </a>
-      </div>
-      <div class="links">
         <a href="files/CV_BOUINIER_Titouan.pdf" target="_blank" download>
           <img src="images/PDF.svg" alt="CV link" style="height:16px; vertical-align:middle;">My CV
         </a>
@@ -433,7 +467,7 @@
     <div class="projects-grid">
 
       <div class="project-card">
-        <img src="images/Morpho2.png" alt="Morpho butterfly" class="project-img">
+        <img src="images/Morpho_icon.png" alt="Morpho butterfly" class="project-img">
         <h3>Morpho patrolling timings</h3>
         <p>Field study of diel activity patterns in <em>Morpho</em> butterflies across South America.</p>
       </div>
