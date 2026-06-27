@@ -132,7 +132,6 @@
   }
 }
 
-    /* offset anchor targets so they aren't hidden behind the navbar */
     :target { scroll-margin-top: 64px; }
     #hero, #about, #projects, #pub-talks { scroll-margin-top: 64px; }
 
@@ -313,7 +312,6 @@
 
     /* ── Publications & Talks (tabbed) ─────────────────────── */
 
-    /* The radio inputs that drive tab state — must live in <main> */
     input[name="pubtab"] { display: none; }
 
     #pub-talks {
@@ -323,7 +321,6 @@
     }
 
     .tab-header {
-      border-bottom: 1px solid rgba(180, 180, 220, 0.4);
       margin-bottom: 0;
     }
 
@@ -461,7 +458,7 @@
     <div id="portrait"></div>
     <div id="hero-text">
       <h1>Titouan Bouinier, PhD <span style="font-size:0.8rem; color:#888; font-family:sans-serif;">(he/him)</span></h1>
-      <p>Doctor in Evolutionary ecology &amp; Agricultural engineer</p>
+      <p>Doctor in Evolutionary ecology & Agricultural engineer</p>
       <div class="links">
         <a href="https://cv.hal.science/titouan-bouinier" target="_blank">
           <img src="images/HAL.svg" alt="HAL" style="height:14px; vertical-align:middle;">HAL
@@ -476,6 +473,7 @@
           <img src="images/PDF.svg" alt="CV link" style="height:16px; vertical-align:middle;">My CV
         </a>
       </div>
+    <div style="font-size: small; margin-top: 3rem;">Contact me: <strong>titouanbouinier@hotmail.fr</strong> | <strong>(+33) 6 95 35 75 81</strong></div>
     </div>
     <div id="logo">
       <picture>
@@ -520,12 +518,12 @@
   </section>
   
 
-  <!-- Tab radio inputs: must be siblings of #pub-talks in <main> -->
+  <!-- All tabs radio inputs -->
   <input type="radio" name="pubtab" id="tab-pub" checked>
   <input type="radio" name="pubtab" id="tab-talks">
 <input type="radio" name="pubtab" id="tab-teach">
 
-  <!-- Publications & Talks (tabbed) -->
+  <!-- All tabs labels -->
   <section id="pub-talks">
 
     <div class="tab-header">
@@ -644,8 +642,6 @@
           Fête de la Science/Collège de France - October 2025 - Paris, France <br>
         </div>
 
-
-
       </div>
     </div>
 
@@ -657,7 +653,7 @@
       <li>I was a member of the Scientific council of the National Muséum of Natural History (2023-2026)</li>
       <li>I am very fond of baking, especially sweet pastries.</li>
       
-      <li> I am against generative AI, and signed the <a href="//atecopol.hypotheses.org/13082">manifesto of conscientious objection</a> against the use of generative IA in research (this is extendable to all uses of gAi though).</li>
+      <li> I am against generative AI, and signed the <a href="https://atecopol.hypotheses.org/13082" target="_blank">manifesto of conscientious objection</a> against the use of generative IA in research (this is extendable to all uses of gAi though).</li>
       
     </ul>
       <div>
