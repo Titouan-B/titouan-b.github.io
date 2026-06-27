@@ -292,6 +292,8 @@
       margin-bottom: 1rem;
     }
 
+    .paywalled:hover
+
     .pub-list { display: flex; flex-direction: column; gap: 0.9rem; }
 
     .pub {
@@ -343,7 +345,30 @@
       border-left-color: #e8a090;
       flex: 1;
     }
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      border-bottom: 1px dotted black;
+      cursor: pointer;
+    }
+    .tooltiptext {
+    width: 130px;
+    bottom: 100%;
+    left: 65%;
+    margin-left: -65px;
+    visibility: hidden;
 
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    } 
+    .tooltip:hover .tooltiptext {
+  visibility: visible;
+  } 
   </style>
 </head>
 
@@ -390,8 +415,8 @@
     </div>
     <div id="logo">
       <picture>
-        <source media="(max-width: 540px)" srcset="full_size_im/CDF_MNHN_Mobile.svg" alt="Logos" style="height:50px; vertical-align:middle;">
-        <img src="full_size_im/CDF_MNHN_Logo.svg" alt="Logos" style="height:200px; vertical-align:middle;">
+        <source media="(max-width: 540px)" srcset="full_size_im/CDF_MNHN_Mobile.svg" alt="Logos" style="height:11rem; vertical-align:middle;">
+        <img src="full_size_im/CDF_MNHN_Logo.svg" alt="Logos" style="height:11rem; vertical-align:middle;">
       </picture>
     </div>
   </section>
@@ -458,7 +483,7 @@
         <strong>Bouinier, T.</strong>, Arthur, B., Smadi, C., Llaurens, V.
         <span class="pub-title">Evolution of divergent daily temporal niches shaped by male–male competition can generate sympatric speciation.</span>
         <span class="pub-journal">Journal of Evolutionary Biology</span>, voag030.<br>
-        <a href="https://doi.org/10.1093/jeb/voag030" target="_blank">https://doi.org/10.1093/jeb/voag030 ↗</a>
+        <a class="paywalled" href="https://doi.org/10.1093/jeb/voag030" target="_blank">https://doi.org/10.1093/jeb/voag030 ↗</a> <strong>|</strong> <a href="https://hal.science/hal-05644714v1/document" target="_blank">PDF</a> <strong>|</strong> <a href="https://hal.science/hal-05644714v1/preview/Supplementary%20material.pdf" target="_blank">Supplementary Material</a>
       </div>
 
       <div class="pub">
@@ -466,7 +491,8 @@
         <strong>Bouinier, T.</strong>, Smadi, C., Llaurens, V.
         <span class="pub-title">Vertical and temporal niche partitioning in Amazonian butterflies: implications for the evolution of thermal tolerance.</span>
         <span class="pub-journal">Oikos</span>, e11567.<br>
-        <a href="https://doi.org/10.1002/oik.11567" target="_blank">https://doi.org/10.1002/oik.11567 ↗</a>
+
+        <a  class="tooltip" href="https://doi.org/10.1002/oik.11567" target="_blank">https://doi.org/10.1002/oik.11567 ↗</a><span class="tooltiptext">Some tooltip text</span>
 
         <div class="pub-child">
           <div class="pub-child-arrow">
@@ -493,10 +519,14 @@
       <li>I was a member of the Scientific council of the National Muséum of Natural History (2023-2026)</li>
       <li>I am very fond of baking, especially sweet pastries.</li>
       
-      <li> I am against generative AI, and signed the <a href="//atecopol.hypotheses.org/13082">manifesto of conscientious objection</a> against the use of generative IA in research.</li>
-
-      <img src="full_size_im/NogAI.svg" style="height: 50px;"> This website was coded and written by a human !
+      <li> I am against generative AI, and signed the <a href="//atecopol.hypotheses.org/13082">manifesto of conscientious objection</a> against the use of generative IA in research (this is extendable to all uses of gAi though).</li>
+      
     </ul>
+      <div>
+   <img src="full_size_im/NogAI.svg" style="vertical-align: middle; height: 50px;"/>
+    <span style="vertical-align: middle;">This website was coded and written by a human !</span>
+</div>
+ 
   </section>
 
 </main>
