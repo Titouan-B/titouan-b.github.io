@@ -87,7 +87,6 @@
     }
 
     /* Mobile: collapse to simple flex, name hidden, links centred */
-   /* Mobile: collapse to simple flex, name hidden, links centred */
     @media (max-width: 540px) {
       #navbar nav {
         display: flex;
@@ -135,7 +134,7 @@
 
     /* offset anchor targets so they aren't hidden behind the navbar */
     :target { scroll-margin-top: 64px; }
-    #hero, #about, #projects, #papers { scroll-margin-top: 64px; }
+    #hero, #about, #projects, #pub-talks { scroll-margin-top: 64px; }
 
     main {
       max-width: 860px;
@@ -312,24 +311,55 @@
       object-fit: contain;
     }
 
-    /* ── Papers ────────────────────────────────────────────── */
-    #papers {
+    /* ── Publications & Talks (tabbed) ─────────────────────── */
+
+    /* The radio inputs that drive tab state — must live in <main> */
+    input[name="pubtab"] { display: none; }
+
+    #pub-talks {
       background: rgba(255, 255, 255, 0.82);
       border-radius: 8px;
       padding: 1.25rem 1.75rem;
     }
 
-    #papers .label {
+    .tab-header {
+      border-bottom: 1px solid rgba(180, 180, 220, 0.4);
+      margin-bottom: 0;
+    }
+
+    .tab-label {
+      display: inline-block;
       font-family: sans-serif;
       font-size: 0.9rem;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: #000000;
-      margin-bottom: 1rem;
+      color: #999;
+      padding: 0 0 8px;
+      margin-right: 1.75rem;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: color 1s;
+      position: relative;
+      margin-bottom: 15px;
     }
 
+    #tab-pub:checked ~ #pub-talks label[for="tab-pub"],
+    #tab-talks:checked ~ #pub-talks label[for="tab-talks"],
+    #tab-teach:checked ~ #pub-talks label[for="tab-teach"]  {
+      color: #000000;
+      border-bottom-color: #1a1a2e;
+    }
 
+    .tab-content {
+      display: none;
+      margin-top: 1rem;
+    }
+
+    #tab-pub:checked ~ #pub-talks #content-pub   { display: block; }
+    #tab-talks:checked ~ #pub-talks #content-talks { display: block; }
+    #tab-teach:checked ~ #pub-talks #content-teach { display: block; }
+    /* ── Shared pub styles ─────────────────────────────────── */
     .pub-list { display: flex; flex-direction: column; gap: 0.9rem; }
 
     .pub {
@@ -381,6 +411,7 @@
       border-left-color: #e8a090;
       flex: 1;
     }
+
     .tooltip {
       position: relative;
       display: inline-block;
@@ -417,7 +448,8 @@
         <a href="#hero">Home</a>
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
-        <a href="#papers">Publications</a>
+        <a href="#pub-talks">Publications & Talks</a>
+
       </div>
     </nav>
   </div>
@@ -486,71 +518,139 @@
 
     </div>
   </section>
+  
 
-  <!-- Papers -->
-  <section id="papers">
-    <div class="label">Publications</div>
-    <div class="pub-list">
+  <!-- Tab radio inputs: must be siblings of #pub-talks in <main> -->
+  <input type="radio" name="pubtab" id="tab-pub" checked>
+  <input type="radio" name="pubtab" id="tab-talks">
+<input type="radio" name="pubtab" id="tab-teach">
 
-      <div class="pub">
-        <span class="pub-badge prep">In prep. - 2026</span><br>
-        <strong>Bouinier, T.</strong>, Smadi C., Llaurens V.
-        <span class="pub-title">Differences in sex-determination system can drive different speeds of reproductive isolation.</span>
-      </div>
+  <!-- Publications & Talks (tabbed) -->
+  <section id="pub-talks">
 
-      <div class="pub">
-        <span class="pub-badge prep">In prep. - 2026</span><br>
-        <strong>Bouinier, T.</strong> and Llaurens V.
-        <span class="pub-title">Daily allochrony: impact of temporal isolation on speciation.</span>
-      </div>
-
-      <div class="pub">
-        <span class="pub-badge prep">In prep. - 2026</span><br>
-        Poloni R., <strong>Bouinier, T.</strong>, …, Debat V., Llaurens V.
-        <span class="pub-title">Sympatric speciation in Amazonian butterflies promoted by fast sexual chromosome evolution and allochrony.</span>
-      </div>
-
-      <div class="pub">
-        <span class="pub-badge published">Published - 2026</span><br>
-        <strong>Bouinier, T.</strong>, Arthur, B., Smadi, C., Llaurens, V.
-        <span class="pub-title">Evolution of divergent daily temporal niches shaped by male–male competition can generate sympatric speciation.</span>
-        <span class="pub-journal">Journal of Evolutionary Biology</span>, voag030.<br>
-        
-      <span class="tooltip">
-        <a href="https://doi.org/10.1093/jeb/voag030" target="_blank">https://doi.org/10.1093/jeb/voag030 ↗</a>
-        <strong>|</strong> <a href="https://hal.science/hal-05644714v1/document" target="_blank">PDF</a> <strong>|</strong> <a href="https://hal.science/hal-05644714v1/preview/Supplementary%20material.pdf" target="_blank">Supplementary Material</a>
-      
-        <span class="tooltiptext">Send me a message for the published version</span>
-      </span>
-        </div>
-
-      <div class="pub">
-        <span class="pub-badge published">Published · 2025</span><br>
-        <strong>Bouinier, T.</strong>, Smadi, C., Llaurens, V.
-        <span class="pub-title">Vertical and temporal niche partitioning in Amazonian butterflies: implications for the evolution of thermal tolerance.</span>
-        <span class="pub-journal">Oikos</span>, e11567.<br>
-
-
-        <a href="https://doi.org/10.1002/oik.11567" target="_blank">https://doi.org/10.1002/oik.11567 ↗</a>
-        <div class="pub-child">
-          <div class="pub-child-arrow">
-            <svg width="24" height="40" viewBox="0 0 24 40" fill="none">
-              <path d="M8 0 L8 28 L22 28" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M17 22 L23 28 L17 34" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="pub pub-highlight-entry">
-            <span class="pub-badge highlight">Research highlight · 2025</span><br>
-            Andriuzzi, W.
-            <span class="pub-title">Hot butterflies.</span>
-            <span class="pub-journal">Nature Ecology &amp; Evolution</span> 9, 1759.<br>
-            <a href="https://doi.org/10.1038/s41559-025-02877-3" target="_blank">https://doi.org/10.1038/s41559-025-02877-3 ↗</a>
-          </div>
-        </div>
-      </div>
-
+    <div class="tab-header">
+      <label for="tab-pub" class="tab-label">Publications</label>
+      <label for="tab-talks" class="tab-label">Talks & conferences</label>
+      <label for="tab-teach" class="tab-label">Teaching & outreach</label>
     </div>
+
+    <!-- Publications tab -->
+    <div class="tab-content" id="content-pub">
+      <div class="pub-list">
+
+        <div class="pub">
+          <span class="pub-badge prep">In prep. - 2026</span><br>
+          <strong>Bouinier, T.</strong>, Smadi C., Llaurens V.
+          <span class="pub-title">Differences in sex-determination system can drive different speeds of reproductive isolation.</span>
+        </div>
+
+        <div class="pub">
+          <span class="pub-badge prep">In prep. - 2026</span><br>
+          <strong>Bouinier, T.</strong> and Llaurens V.
+          <span class="pub-title">Daily allochrony: impact of temporal isolation on speciation.</span>
+        </div>
+
+        <div class="pub">
+          <span class="pub-badge prep">In prep. - 2026</span><br>
+          Poloni R., <strong>Bouinier, T.</strong>, …, Debat V., Llaurens V.
+          <span class="pub-title">Sympatric speciation in Amazonian butterflies promoted by fast sexual chromosome evolution and allochrony.</span>
+        </div>
+
+        <div class="pub">
+          <span class="pub-badge published">Published - 2026</span><br>
+          <strong>Bouinier, T.</strong>, Arthur, B., Smadi, C., Llaurens, V.
+          <span class="pub-title">Evolution of divergent daily temporal niches shaped by male–male competition can generate sympatric speciation.</span>
+          <span class="pub-journal">Journal of Evolutionary Biology</span>, voag030.<br>
+          
+        <span class="tooltip">
+          <a href="https://doi.org/10.1093/jeb/voag030" target="_blank">https://doi.org/10.1093/jeb/voag030 ↗</a>
+          <strong>|</strong> <a href="https://hal.science/hal-05644714v1/document" target="_blank">PDF</a> <strong>|</strong> <a href="https://hal.science/hal-05644714v1/preview/Supplementary%20material.pdf" target="_blank">Supplementary Material</a>
+        
+          <span class="tooltiptext">Send me a message for the published version</span>
+        </span>
+          </div>
+
+        <div class="pub">
+          <span class="pub-badge published">Published · 2025</span><br>
+          <strong>Bouinier, T.</strong>, Smadi, C., Llaurens, V.
+          <span class="pub-title">Vertical and temporal niche partitioning in Amazonian butterflies: implications for the evolution of thermal tolerance.</span>
+          <span class="pub-journal">Oikos</span>, e11567.<br>
+
+          <a href="https://doi.org/10.1002/oik.11567" target="_blank">https://doi.org/10.1002/oik.11567 ↗</a>
+          <div class="pub-child">
+            <div class="pub-child-arrow">
+              <svg width="24" height="40" viewBox="0 0 24 40" fill="none">
+                <path d="M8 0 L8 28 L22 28" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M17 22 L23 28 L17 34" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="pub pub-highlight-entry">
+              <span class="pub-badge highlight">Research highlight · 2025</span><br>
+              Andriuzzi, W.
+              <span class="pub-title">Hot butterflies.</span>
+              <span class="pub-journal">Nature Ecology &amp; Evolution</span> 9, 1759.<br>
+              <a href="https://doi.org/10.1038/s41559-025-02877-3" target="_blank">https://doi.org/10.1038/s41559-025-02877-3 ↗</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Talks tab -->
+    <div class="tab-content" id="content-talks">
+      <div class="pub-list">
+
+        <div class="pub">
+          <span class="pub-title">Evolution of butterfly patrolling activity driven by ecological interactions.</span><br>
+          <span class="pub-journal">International Society for Behavioural Ecology</span> - July 20-24, 2026 - Turin, Italy<br>
+        </div>
+
+        <div class="pub">
+          <span class="pub-title">Differences in sex-determination system can drive different speeds of reproductive isolation.</span><br>
+          <span class="pub-journal">European Meeting for PhD students in Evolutionary Biology </span> - June 8-12, 2026 - Oberwiesenthal, Germany <br>
+        </div>
+
+        <div class="pub">
+          <span class="pub-title">Male-male competition shaping the evolution of differentiated temporal niches.</span><br>
+          <span class="pub-journal">Mathematical Models in Ecology and Evolution</span> - July 15-18, 2024 - Vienna, Austria<br>
+        </div>
+
+        <div class="pub">
+          <span class="pub-journal">École de printemps de la chaire MMB</span> - June 9-14, 2024 – Aussois, France<br>
+        </div>
+
+        <div class="pub">
+          <span class="pub-title">Evolution of ecological niches in a genus of Amazonian butterflies.</span><br>
+          <span class="pub-journal">Congrès des Jeunes Chercheur·e·s du Muséum</span> - April 17-19, 2024 – Paris, France<br>
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <!-- Teaching & outreach tab -->
+    <div class="tab-content" id="content-teach">
+      <div class="pub-list">
+
+        <div class="pub">
+          Gave a class at École Normale Supérieure (ENS) - <span class="pub-title">How to read and summarize scientific articles in evolutionnary ecology</span><br>
+          ENS - May 2026 - Paris, France<br>
+        </div>
+
+        <div class="pub">
+          Organized a stand at a yearly scientific communication event - <span class="pub-title">Evolution of colour, camouflage and mimicry in insects.</span><br>
+          Fête de la Science/Collège de France - October 2025 - Paris, France <br>
+        </div>
+
+
+
+      </div>
+    </div>
+
   </section>
+
   <section id="about">
     <div class="label">Misc</div>
     <ul>
