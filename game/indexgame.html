@@ -1,0 +1,802 @@
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>plano game</title>
+</head>
+<body id="screen" oncontextmenu="return false;">
+<script src="./assets/engine/pixi.js"></script>
+<script src="./assets/engine/gif.js"></script>
+</body>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: black;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  margin: auto;
+  display: block;
+}
+</style>
+
+<script type="module">
+const fetchData = await fetch('./game.json');
+const gameData = await fetchData.json();
+const screen = document.getElementById('screen');
+const app = new PIXI.Application();
+const appWidth = 800;
+const appHeight = 600;
+globalThis.__PIXI_APP__ = app;
+const body = document.querySelector('body');
+await app.init({ backgroundAlpha: 0, width: appWidth, height: appHeight });
+screen.appendChild(app.canvas);
+
+const gameStage = new PIXI.Container();
+const playerContainer = new PIXI.Container();
+const spriteStage = new PIXI.Container();
+const backgroundLayer = new PIXI.Container();
+const spriteTopLayer = new PIXI.Container();
+const spriteMiddleLayer = new PIXI.Container();
+const spriteBottomLayer = new PIXI.Container();
+const textStage = new PIXI.Container();
+const previewContainer = new PIXI.Container();
+const pinStage = new PIXI.Container();
+const mobileControls = new PIXI.Container();
+
+app.stage.addChild(gameStage);
+gameStage.addChild(spriteStage);
+spriteStage.addChild(backgroundLayer, spriteBottomLayer, spriteMiddleLayer, spriteTopLayer);
+gameStage.addChild(textStage);
+app.stage.addChild(playerContainer);
+app.stage.addChild(pinStage);
+app.stage.addChild(mobileControls);
+app.stage.addChild(previewContainer);
+
+
+const startPosition = gameData.startPos;
+const newPos = {x: -(startPosition.x - (appWidth / 2)), y: -(startPosition.y - (appHeight / 2))};
+gameStage.position.x = newPos.x;
+gameStage.position.y = newPos.y;
+
+const gameInfo = gameData.gameInfo;
+const previewBG = new PIXI.Graphics().rect(0, 0, appWidth, appHeight).fill(gameInfo.bgColor);
+previewContainer.addChild(previewBG);
+
+document.title = gameInfo.title;
+
+switch (gameInfo.titleFont) {
+case 'font-plano-sans-serif':
+  await PIXI.Assets.load({src:'./assets/fonts/roboto.ttf', data: {family: 'font-plano-sans-serif'}});
+break;
+case 'font-plano-serif':
+  await PIXI.Assets.load({src:'./assets/fonts/ptserif.ttf', data: {family: 'font-plano-serif'}});
+break;
+case 'font-plano-monospace':
+  await PIXI.Assets.load({src:'./assets/fonts/inconsolata.ttf', data: {family: 'font-plano-monospace'}});
+break;
+case 'font-plano-gothic':
+  await PIXI.Assets.load({src:'./assets/fonts/gothic.ttf', data: {family: 'font-plano-gothic'}});
+break;
+case 'font-plano-cute':
+  await PIXI.Assets.load({src:'./assets/fonts/yomogi.ttf', data: {family: 'font-plano-cute'}});
+break;
+case 'font-custom-1':
+  await PIXI.Assets.load({src:'./assets/fonts/custom1.ttf', data: {family: 'font-custom-1'}});
+break;
+case 'font-custom-2':
+  await PIXI.Assets.load({src:'./assets/fonts/custom2.ttf', data: {family: 'font-custom-2'}});
+break;
+case 'font-custom-3':
+  await PIXI.Assets.load({src:'./assets/fonts/custom3.ttf', data: {family: 'font-custom-3'}});
+break;
+}
+
+const title = new PIXI.Text({
+    text: gameInfo.title,
+    style: {
+      fill: gameInfo.fgColor,
+      fontFamily: gameInfo.titleFont,
+      fontSize: 50,
+      padding: 5,
+      wordWrap: true,
+      wordWrapWidth: appWidth - 40
+    },
+});
+title.position.set(20,20);
+const author = new PIXI.Text({
+    text: "by " + gameInfo.author,
+    style: {
+      fill: gameInfo.fgColor,
+      align: "right",
+      fontSize: 40,
+      padding: 5,
+      fontFamily: gameInfo.titleFont,
+      wordWrap: true,
+      wordWrapWidth: appWidth - 40
+    },
+    anchor: 1
+});
+author.position.set(appWidth - 20, appHeight - 20);
+const loaderWidth = appWidth;
+const loader = new PIXI.Graphics()
+  .rect(0, appHeight / 2, loaderWidth, 4)
+  .fill(gameInfo.fgColor);
+previewContainer.addChild(title);
+previewContainer.addChild(author);
+previewContainer.addChild(loader);
+while (title.height > (appHeight - 40) / 2) {
+  title.style.fontSize = title.style.fontSize -1;
+}
+while (author.height > (appHeight - 40) / 2) {
+  author.style.fontSize = author.style.fontSize -1;
+}
+
+
+const musicContainer = new PIXI.Container();
+let musicSmall = true;
+let musicName;
+if (gameInfo.musicTitle) {
+  app.stage.addChild(musicContainer);
+  musicName = new PIXI.Text({
+    text: "♫ " + gameInfo.musicTitle,
+    anchor: 0.5,
+    style: {
+      fill: gameInfo.fgColor,
+      fontSize: 14
+    }
+  });
+  if (musicName.width > appWidth) {
+    musicName.anchor.set(0, 0.5);
+    musicName.position.set(10, appHeight - 10);
+    musicSmall = false;
+  } else {
+    musicName.position.set(appWidth / 2, appHeight - 10);
+  }
+  const musicBG = new PIXI.Graphics().rect(0, appHeight - 20, appWidth, 20).fill(gameInfo.bgColor);
+  musicContainer.y = 21;
+  musicContainer.addChild(musicBG, musicName);
+}
+
+
+const transparent = new PIXI.Color('rgba(0, 0, 0, 0)');
+
+const mobileUp = new PIXI.Graphics();
+mobileUp.moveTo(0,0);
+mobileUp.lineTo(appWidth / 2, appHeight / 2);
+mobileUp.lineTo(appWidth, 0);
+mobileUp.lineTo(0,0);
+mobileUp.fill(transparent);
+
+const mobileLeft = new PIXI.Graphics();
+mobileLeft.moveTo(0,0);
+mobileLeft.lineTo(appWidth / 2, appHeight / 2);
+mobileLeft.lineTo(0, appHeight);
+mobileLeft.lineTo(0,0);
+mobileLeft.fill(transparent);
+
+const mobileRight = new PIXI.Graphics();
+mobileRight.moveTo(appWidth, 0);
+mobileRight.lineTo(appWidth / 2, appHeight / 2);
+mobileRight.lineTo(appWidth, appHeight);
+mobileRight.lineTo(appWidth, 0);
+mobileRight.fill(transparent);
+
+const mobileDown = new PIXI.Graphics();
+mobileDown.moveTo(0, appHeight);
+mobileDown.lineTo(appWidth / 2, appHeight / 2);
+mobileDown.lineTo(appWidth, appHeight);
+mobileDown.lineTo(0, appHeight);
+mobileDown.fill(transparent);
+
+mobileUp.eventMode = 'static';
+mobileLeft.eventMode = 'static';
+mobileRight.eventMode = 'static';
+mobileDown.eventMode = 'static';
+
+mobileUp.on('pointerdown', () => {
+  body.dispatchEvent(new CustomEvent('keydown', {detail: {key: 'ArrowUp',}}));
+});
+mobileUp.on('pointerup', () => {
+  body.dispatchEvent(new CustomEvent('keyup', {detail: {key: 'ArrowUp'}}));
+  body.dispatchEvent(new CustomEvent('keyup', {detail: {key: 'ArrowLeft'}}));
+  body.dispatchEvent(new CustomEvent('keyup', {detail: {key: 'ArrowRight'}}));
+  body.dispatchEvent(new CustomEvent('keyup', {detail: {key: 'ArrowDown'}}));
+});
+mobileLeft.on('pointerdown', () => {
+  body.dispatchEvent(new CustomEvent('keydown', {detail: {key: 'ArrowLeft'}}));
+});
+mobileLeft.on('pointerup', () => {
+  body.dispatchEvent(new CustomEvent('keyup', {detail: {key: 'ArrowUp'}}));
+  body.dispatchEvent(new CustomEvent('keyup', {detail: {key: 'ArrowLeft'}}));
+  body.dispatchEvent(new CustomEvent('keyup', {detail: {key: 'ArrowRight'}}));
+  body.dispatchEvent(new CustomEvent('keyup', {detail: {key: 'ArrowDown'}}));
+});
+mobileRight.on('pointerdown', () => {
+  body.dispatchEvent(new CustomEvent('keydown', {detail: {key: 'ArrowRight'}}));
+});
+mobileRight.on('pointerup', () => {
+  body.dispatchEvent(new CustomEvent('keyup', {detail: {key: 'ArrowUp'}}));
+  body.dispatchEvent(new CustomEvent('keyup', {detail: {key: 'ArrowLeft'}}));
+  body.dispatchEvent(new CustomEvent('keyup', {detail: {key: 'ArrowRight'}}));
+  body.dispatchEvent(new CustomEvent('keyup', {detail: {key: 'ArrowDown'}}));
+});
+mobileDown.on('pointerdown', () => {
+  body.dispatchEvent(new CustomEvent('keydown', {detail: {key: 'ArrowDown'}}));
+});
+mobileDown.on('pointerup', () => {
+  body.dispatchEvent(new CustomEvent('keyup', {detail: {key: 'ArrowUp'}}));
+  body.dispatchEvent(new CustomEvent('keyup', {detail: {key: 'ArrowLeft'}}));
+  body.dispatchEvent(new CustomEvent('keyup', {detail: {key: 'ArrowRight'}}));
+  body.dispatchEvent(new CustomEvent('keyup', {detail: {key: 'ArrowDown'}}));
+});
+
+mobileControls.addChild(mobileUp);
+mobileControls.addChild(mobileLeft);
+mobileControls.addChild(mobileRight);
+mobileControls.addChild(mobileDown);
+
+const backGround = new PIXI.TilingSprite();
+const spriteData = gameData.gameItems;
+
+const totalSprites = spriteData.length;
+let loadedSprites = 0;
+const fonts = [];
+
+function getSpriteLayer(sprite) {
+  let thisSpriteLayer;
+    switch (sprite.flatLayer) {
+      case 'top':
+        thisSpriteLayer = spriteTopLayer;
+        break;
+      case 'middle':
+        thisSpriteLayer = spriteMiddleLayer;
+        break;
+      case 'bottom':
+        thisSpriteLayer = spriteBottomLayer;
+        break;
+      case 'default':
+        thisSpriteLayer = spriteMiddleLayer;
+        break;
+    }
+  return thisSpriteLayer;
+}
+
+    for (const i of spriteData) {
+        if (i.flatType == "sprite" && i.flatFormat != 'gif') {
+          const texture = await PIXI.Assets.load({
+              src: './assets/sprites/'+ i.number + '.webp',
+              format: 'webp',
+              loadParser: 'loadTextures',
+          });
+          const sprite = new PIXI.Sprite(texture);
+          sprite.anchor.set(0.5);
+          sprite.position.x = i.position.x;
+          sprite.position.y = i.position.y;
+          sprite.scale.x = i.scale.x;
+          sprite.scale.y = i.scale.y;
+          sprite.angle = i.angle;
+          if (i.flatPin) {
+            pinStage.addChild(sprite);
+          } else {
+            const newStage = getSpriteLayer(i);
+            console.log(newStage);
+            newStage.addChild(sprite);
+          }
+        } else if (i.flatType == "sprite" && i.flatFormat == "gif") {
+            const response = await PIXI.DOMAdapter.get().fetch('./assets/sprites/'+ i.number + '.gif');
+            const buffer = await response.arrayBuffer();
+            const gifSrc = PIXI.GifSource.from(buffer);
+            const texture = gifSrc;
+            const sprite = new PIXI.GifSprite(texture);
+            sprite.anchor.set(0.5);
+            sprite.position.x = i.position.x;
+            sprite.position.y = i.position.y;
+            sprite.scale.x = i.scale.x;
+            sprite.scale.y = i.scale.y;
+            sprite.angle = i.angle;
+            if (i.flatPin) {
+              pinStage.addChild(sprite);
+            } else {
+              const newStage = getSpriteLayer(i);
+              newStage.addChild(sprite);
+            }
+          } else if (i.flatType == "background") {
+            const texture = await PIXI.Assets.load({
+                src: './assets/sprites/'+ i.number + '.webp',
+                format: 'webp',
+                loadParser: 'loadTextures',
+            });
+            backGround.texture = texture;
+            backGround.anchor.set(0.5);
+            backGround.position.x = i.position.x;
+            backGround.position.y = i.position.y;
+            backGround.scale.x = i.scale.x;
+            backGround.scale.y = i.scale.y;
+            backGround.width = i.size.width;
+            backGround.height = i.size.height;
+            i.tileRotation ? (backGround.tileRotation = i.tileRotation) : (backGround.tileRotation = 0);
+            backgroundLayer.addChild(backGround);
+        } else if (i.flatType == "text") {
+            if (!fonts.includes(i.fontFamily)) {
+            fonts.push(i.fontFamily);
+              switch (i.fontFamily) {
+              case 'font-plano-sans-serif':
+                await PIXI.Assets.load({src:'./assets/fonts/roboto.ttf', data: {family: 'font-plano-sans-serif'}});
+              break;
+              case 'font-plano-serif':
+                await PIXI.Assets.load({src:'./assets/fonts/ptserif.ttf', data: {family: 'font-plano-serif'}});
+              break;
+              case 'font-plano-monospace':
+                await PIXI.Assets.load({src:'./assets/fonts/inconsolata.ttf', data: {family: 'font-plano-monospace'}});
+              break;
+              case 'font-plano-gothic':
+                await PIXI.Assets.load({src:'./assets/fonts/gothic.ttf', data: {family: 'font-plano-gothic'}});
+              break;
+              case 'font-plano-cute':
+                await PIXI.Assets.load({src:'./assets/fonts/yomogi.ttf', data: {family: 'font-plano-cute'}});
+              break;
+              case 'font-custom-1':
+                await PIXI.Assets.load({src:'./assets/fonts/custom1.ttf', data: {family: 'font-custom-1'}});
+              break;
+              case 'font-custom-2':
+                await PIXI.Assets.load({src:'./assets/fonts/custom2.ttf', data: {family: 'font-custom-2'}});
+              break;
+              case 'font-custom-1':
+                await PIXI.Assets.load({src:'./assets/fonts/custom3.ttf', data: {family: 'font-custom-3'}});
+              break;
+              }
+            }
+            const text = new PIXI.Text();
+            text.position.x = i.position.x;
+            text.position.y = i.position.y;
+            text.style.fontSize = i.fontSize,
+            text.style.fill = i.fill,
+            text.style.fontFamily = i.fontFamily,
+            text.style.align = i.align,
+            text.style.fontStyle = i.italic,
+            text.style.fontWeight = i.bold,
+            text.style.padding = 5,
+            text.angle = i.angle,
+            text.style.stroke = {
+            color: i.stroke.color,
+            width: i.stroke.width
+            };
+            switch (text.style.align) {
+              case 'left':
+                text.anchor.x = 0;
+                text.anchor.y = 0;
+                break;
+              case 'center':
+                text.anchor.x = 0.5;
+                text.anchor.y = 0.5;
+                break;
+              case 'right':
+                text.anchor.x = 1;
+                text.anchor.y = 0;
+            }
+            text.text = i.text;
+            if (i.flatPin) {
+              pinStage.addChild(text);
+            } else {
+              textStage.addChild(text);
+            }
+        }
+        loadedSprites += 1;
+        loader.width = loaderWidth * (1 - (loadedSprites / totalSprites));
+    }
+
+let chara;
+let playerSpriteTextures;
+let playerSprite;
+if (gameInfo.charaType == 'upload-single') {
+  try {
+    const texture = await PIXI.Assets.load({
+      src: './assets/chara/player.png',
+      format: 'png',
+      loadParser: 'loadTextures',
+    });
+    playerSprite = new PIXI.Sprite(texture);
+  } catch {
+    const src = await fetch('./assets/chara/player.gif');
+    const buffer = await src.arrayBuffer();
+    const gifSrc = PIXI.GifSource.from(buffer);
+    const texture = gifSrc;
+    playerSprite = new PIXI.GifSprite(texture);
+  }
+} else {
+  chara = [
+    {alias: 'left1', src: './assets/chara/left1.png'},
+    {alias: 'left2', src: './assets/chara/left2.png'},
+    {alias: 'left3', src: './assets/chara/left3.png'},
+    {alias: 'right1', src: './assets/chara/right1.png'},
+    {alias: 'right2', src: './assets/chara/right2.png'},
+    {alias: 'right3', src: './assets/chara/right3.png'},
+    {alias: 'up1', src: './assets/chara/up1.png'},
+    {alias: 'up2', src: './assets/chara/up2.png'},
+    {alias: 'up3', src: './assets/chara/up3.png'},
+    {alias: 'down1', src: './assets/chara/down1.png'},
+    {alias: 'down2', src: './assets/chara/down2.png'},
+    {alias: 'down3', src: './assets/chara/down3.png'},
+  ];
+  playerSpriteTextures = await PIXI.Assets.load(chara);
+  playerSprite = new PIXI.AnimatedSprite([playerSpriteTextures.down1]);
+  playerSprite.label = 'player';
+  playerSprite.animationSpeed = 0.15;
+  playerSprite.loop = true;
+}
+
+playerSprite.anchor.set(0.5);
+playerSprite.position.set(appWidth / 2, appHeight / 2);
+playerContainer.addChild(playerSprite);
+
+const directions = ["ArrowDown", "ArrowUp", "ArrowLeft", "ArrowRight", "W", "A", "S", "D", "w", "a", "s", "d"];
+let directionKeys = {
+  up: 0,
+  down: 0,
+  left: 0,
+  right: 0,
+  highest: 0,
+  last: 'down'
+};
+let ticks = 0;
+
+  function updatePlayerMovement(event, invert = false) {
+    let testKey;
+    if (event.key) {testKey = event.key} else {testKey = event.detail.key}
+    if (!event.repeat && directions.includes(testKey)) {
+      ticks += 1;
+      switch (testKey) {
+        case 'ArrowUp':
+        case 'W':
+        case 'w':
+          invert ? directionKeys.up = 0 : directionKeys.up = ticks;
+          break;
+        case 'ArrowDown':
+        case 'S':
+        case 's':
+          invert ? directionKeys.down = 0 : directionKeys.down = ticks;
+          break;
+        case 'ArrowLeft':
+        case 'A':
+        case 'a':
+          invert ? directionKeys.left = 0 : directionKeys.left = ticks;
+          break;
+        case 'ArrowRight':
+        case 'D':
+        case 'd':
+          invert ? directionKeys.right = 0 : directionKeys.right = ticks;
+          break;
+      }
+      let max = 0;
+      if(directionKeys.up > max) {
+        max = directionKeys.up;
+        directionKeys.last = 'up';
+        if (playerContainer.getChildByLabel('player')) {
+          playerContainer.getChildByLabel('player').textures = [playerSpriteTextures.up2, playerSpriteTextures.up3];
+          playerContainer.getChildByLabel('player').play();
+        }
+      }
+      if(directionKeys.down > max) {
+        max = directionKeys.down;
+        directionKeys.last = 'down';
+        if (playerContainer.getChildByLabel('player')) {
+          playerContainer.getChildByLabel('player').textures = [playerSpriteTextures.down2, playerSpriteTextures.down3];
+          playerContainer.getChildByLabel('player').play();
+        }
+      }
+      if(directionKeys.left > max) {
+        max = directionKeys.left;
+        directionKeys.last = 'left';
+        if (playerContainer.getChildByLabel('player')) {
+          playerContainer.getChildByLabel('player').textures = [playerSpriteTextures.left2, playerSpriteTextures.left3];
+          playerContainer.getChildByLabel('player').play();
+        }
+      }
+      if(directionKeys.right > max) {
+        max = directionKeys.right;
+        directionKeys.last = 'right';
+        if (playerContainer.getChildByLabel('player')) {
+          playerContainer.getChildByLabel('player').textures = [playerSpriteTextures.right2, playerSpriteTextures.right3];
+          playerContainer.getChildByLabel('player').play();
+        }
+      }
+      directionKeys.highest = max;
+      checkStoppedPlayer();
+    }
+  }
+  function checkStoppedPlayer() {
+    if (directionKeys.highest == 0) {
+      switch (directionKeys.last) {
+        case 'up':
+          playerContainer.getChildByLabel('player') && (playerContainer.getChildByLabel('player').textures = [playerSpriteTextures.up1]);
+          break;
+        case 'down':
+          playerContainer.getChildByLabel('player') && (playerContainer.getChildByLabel('player').textures = [playerSpriteTextures.down1]);
+          break;
+        case 'left':
+          playerContainer.getChildByLabel('player') && (playerContainer.getChildByLabel('player').textures = [playerSpriteTextures.left1]);
+          break;
+        case 'right':
+          playerContainer.getChildByLabel('player') && (playerContainer.getChildByLabel('player').textures = [playerSpriteTextures.right1]);
+          break;
+      }
+    }
+  }
+  body.addEventListener('keydown', (e) => {
+    e.preventDefault();
+    updatePlayerMovement(e);
+  });
+
+    body.addEventListener('keyup', (e) => {
+      updatePlayerMovement(e, true);
+  });
+  body.addEventListener('blur', () => {
+  directionKeys = {
+    up: 0,
+    down: 0,
+    left: 0,
+    right: 0,
+    highest: 0,
+    last: 'down'
+  };
+  checkStoppedPlayer();
+  });
+
+  const bgWidth = backGround.width;
+  const bgHeight = backGround.height;
+
+  const bgX = backGround.x;
+  const bgY = backGround.y;
+  const rightMax = -(bgX + bgWidth * 0.5) + appWidth;
+  const leftMax = -(backGround.bounds.minX + bgX);
+  const upMax = -(backGround.bounds.minY + bgY);
+  const downMax = -(bgY + bgHeight * 0.5) + appHeight;
+
+
+  if (gameStage.y >= upMax) {
+    const diff = upMax - gameStage.y;
+    gameStage.y = Math.min(upMax, gameStage.y);
+    playerSprite.position.y += diff;
+  }
+  if (gameStage.y <= downMax) {
+    const diff = downMax - gameStage.y;
+    gameStage.y = Math.max(downMax, gameStage.y);
+    playerSprite.position.y += diff;
+  }
+  if (gameStage.x <= rightMax) {
+    const diff = rightMax - gameStage.x;
+    gameStage.x = Math.max(rightMax, gameStage.x);
+    playerSprite.position.x += diff;
+  }
+  if (gameStage.x >= leftMax) {
+    const diff = leftMax - gameStage.x;
+    gameStage.x = Math.min(leftMax, gameStage.x);
+    playerSprite.position.x += diff;
+  }
+
+  const playerCenter = {x: appWidth / 2, y: appHeight / 2};
+
+  const moveSpeed = 5;
+  let controlsFree = false;
+  app.ticker.add((time) => {
+      if(directionKeys.highest == 0 || controlsFree == false) return;
+      if (directionKeys.up == directionKeys.highest) {
+        if (gameStage.y >= upMax || !(playerSprite.position.y <= playerCenter.y)) {
+          playerSprite.position.y = Math.max(0 + 50, playerSprite.position.y - moveSpeed * time.deltaTime);
+        } else {
+          gameStage.position.y = gameStage.position.y + moveSpeed * time.deltaTime;
+        }
+      } else if (directionKeys.down == directionKeys.highest) {
+        if (gameStage.position.y <= downMax || !(playerSprite.position.y >= playerCenter.y)) {
+          playerSprite.position.y = Math.min(appHeight - 50, playerSprite.position.y + moveSpeed * time.deltaTime);
+        } else {
+          gameStage.position.y = gameStage.position.y - moveSpeed * time.deltaTime;
+        }
+      } else if (directionKeys.left == directionKeys.highest) {
+        if (gameStage.position.x >= leftMax || !(playerSprite.position.x <= playerCenter.x)) {
+          playerSprite.position.x = Math.max(0 + 50, playerSprite.position.x - moveSpeed * time.deltaTime);
+        } else {
+          gameStage.position.x = gameStage.position.x + moveSpeed * time.deltaTime;
+        }
+      } else if (directionKeys.right == directionKeys.highest) {
+        if (gameStage.position.x <= rightMax || !(playerSprite.position.x >= playerCenter.x)) {
+          playerSprite.position.x = Math.min(appWidth - 50, playerSprite.position.x + moveSpeed * time.deltaTime);
+        } else {
+          gameStage.position.x = gameStage.position.x - moveSpeed * time.deltaTime;
+        }
+      }
+  });
+
+let musicAdded = false;
+let previewTime = 50;
+let musicTime = 500;
+let musicShowTime = 500;
+let musicScrollTime = 200;
+const previewTicker = new PIXI.Ticker();
+const musicTitleTicker = new PIXI.Ticker();
+
+function endPreview() {
+  if (previewTime) {
+    previewTime -= 1;
+  } else {
+    controlsFree = true;
+    const newAlpha = previewContainer.alpha - (0.005 * previewTicker.deltaTime);
+    previewContainer.alpha = newAlpha;
+    if (!musicAdded) {musicAdded = true; addMusic();}
+    if (previewContainer.alpha <= 0) {
+      previewTicker.stop();
+      app.stage.removeChild(previewContainer);
+    }
+  }
+}
+previewTicker.add(endPreview);
+previewTicker.start();
+async function addMusic() {
+  if (gameInfo.musicFileName) {
+    const music = new Audio("./assets/sound/" + gameInfo.musicFileName);
+    music.loop = true;
+    try {
+      await music.play();
+      document.removeEventListener('click', addMusic);
+      document.removeEventListener('keydown', addMusic);
+      if (gameInfo.musicTitle) {
+        musicTitleTicker.add(showMusicTitle);
+        musicTitleTicker.start();
+      }
+    } catch {
+      document.addEventListener('click', addMusic);
+      document.addEventListener('keydown', addMusic);
+    };
+  }
+}
+function showMusicTitle() {
+  if (musicTime != 0) {
+    musicTime -= 1;
+  } else if (musicTime == 0) {
+    if (musicContainer.y != 0) {
+      musicContainer.y = Math.max(0, musicContainer.y - (1 * musicTitleTicker.deltaTime));
+    } else {
+      musicTitleTicker.remove(showMusicTitle);
+      if (musicSmall) {
+        musicTitleTicker.add(hideMusicTitle);
+      } else {
+        musicTitleTicker.add(scrollMusicTitle);
+      }
+    }
+  }
+}
+function hideMusicTitle() {
+  if (musicShowTime != 0) {
+    musicShowTime -= 1;
+  } else if (musicShowTime == 0) {
+    if (musicContainer.y <= 21) {
+      musicContainer.y = musicContainer.y + (1 * musicTitleTicker.deltaTime);
+    } else {
+      musicTitleTicker.stop();
+    }
+  }
+}
+function scrollMusicTitle() {
+  if (musicScrollTime != 0) {
+    musicScrollTime -= 1;
+  } else if (musicScrollTime == 0) {
+    if (musicName.x > ((appWidth - 10) - musicName.width)) {
+      musicName.x = musicName.x - (1 * musicTitleTicker.deltaTime)
+    } else {
+        musicTitleTicker.remove(scrollMusicTitle);
+        musicTitleTicker.add(hideMusicTitle);
+    }
+  }
+}
+
+const gamepads = {};
+let gamepadStart;
+
+
+function gamepadHandler(event, connected) {
+  const gamepad = event.gamepad;
+
+  if (connected) {
+    gamepads[gamepad.index] = gamepad;
+    controlLoop();
+  } else {
+    delete gamepads[gamepad.index];
+    cancelAnimationFrame(gamepadStart);
+  }
+}
+
+window.addEventListener("gamepadconnected", (e) => {
+  gamepadHandler(e, true);
+});
+window.addEventListener("gamepaddisconnected", (e) => {
+  gamepadHandler(e, false);
+});
+
+let movedByPad = false;
+function controlLoop() {
+  const gamepads = navigator.getGamepads();
+  if (!gamepads) {
+    return;
+  }
+  const gp = gamepads[0];
+  if (gp.buttons[12].pressed || gp.axes[1] == -1) {
+    playerDir = 'up';
+    movedByPad = true;
+    if (playerContainer.getChildByLabel('player') && !(playerContainer.getChildByLabel('player').playing)) {
+      playerContainer.getChildByLabel('player') && (playerContainer.getChildByLabel('player').textures = [playerSpriteTextures.up2, playerSpriteTextures.up3]);
+      playerContainer.getChildByLabel('player') && (playerContainer.getChildByLabel('player').play());
+    }
+    if (gameStage.position.y >= upMax || !(playerSprite.position.y <= playerCenter.y)) {
+      playerSprite.position.y = Math.max(0 + 50, playerSprite.position.y - moveSpeed);
+    } else {
+      gameStage.position.y = gameStage.position.y + moveSpeed;
+    }
+  } else if (gp.buttons[13].pressed || gp.axes[1] == 1) {
+    playerDir = 'down';
+    movedByPad = true;
+    if (playerContainer.getChildByLabel('player') && !(playerContainer.getChildByLabel('player').playing)) {
+      playerContainer.getChildByLabel('player') && (playerContainer.getChildByLabel('player').textures = [playerSpriteTextures.down2, playerSpriteTextures.down3]);
+      playerContainer.getChildByLabel('player') && (playerContainer.getChildByLabel('player').play());
+    }
+    if (gameStage.position.y <= downMax || !(playerSprite.position.y >= playerCenter.y)) {
+      playerSprite.position.y = Math.min(appHeight - 50, playerSprite.position.y + moveSpeed);
+    } else {
+      gameStage.position.y = gameStage.position.y - moveSpeed;
+    }
+  } else if (gp.buttons[14].pressed || gp.axes[0] == -1) {
+    playerDir = 'left';
+    movedByPad = true;
+    if (playerContainer.getChildByLabel('player') && !(playerContainer.getChildByLabel('player').playing)) {
+      playerContainer.getChildByLabel('player') && (playerContainer.getChildByLabel('player').textures = [playerSpriteTextures.left2, playerSpriteTextures.left3]);
+      playerContainer.getChildByLabel('player') && (playerContainer.getChildByLabel('player').play());
+    }
+    if (gameStage.position.x >= leftMax || !(playerSprite.position.x <= playerCenter.x)) {
+      playerSprite.position.x = Math.max(0 + 50, playerSprite.position.x - moveSpeed);
+    } else {
+      gameStage.position.x = gameStage.position.x + moveSpeed;
+    }
+  } else if (gp.buttons[15].pressed || gp.axes[0] == 1) {
+    playerDir = 'right';
+    movedByPad = true;
+    if (playerContainer.getChildByLabel('player') && !(playerContainer.getChildByLabel('player').playing)) {
+      playerContainer.getChildByLabel('player') && (playerContainer.getChildByLabel('player').textures = [playerSpriteTextures.right2, playerSpriteTextures.right3]);
+      playerContainer.getChildByLabel('player') && (playerContainer.getChildByLabel('player').play());
+    }
+    if (gameStage.position.x <= rightMax || !(playerSprite.position.x >= playerCenter.x)) {
+      playerSprite.position.x = Math.min(appWidth - 50, playerSprite.position.x + moveSpeed);
+    } else {
+      gameStage.position.x = gameStage.position.x - moveSpeed;
+    }
+  } else if (movedByPad) {
+    movedByPad = false;
+    switch (playerDir) {
+      case "up":
+        playerContainer.getChildByLabel('player') && (playerContainer.getChildByLabel('player').textures = [playerSpriteTextures.up1]);
+        break;
+      case "down":
+        playerContainer.getChildByLabel('player') && (playerContainer.getChildByLabel('player').textures = [playerSpriteTextures.down1]);
+        break;
+      case "left":
+        playerContainer.getChildByLabel('player') && (playerContainer.getChildByLabel('player').textures = [playerSpriteTextures.left1]);
+        break;
+      case "right":
+        playerContainer.getChildByLabel('player') && (playerContainer.getChildByLabel('player').textures = [playerSpriteTextures.right1]);
+    }
+  }
+  gamepadStart = requestAnimationFrame(controlLoop);
+}
+</script>
