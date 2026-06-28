@@ -12,10 +12,10 @@
     html,body
 {
     width: 100%;
-
+    height: 100%;
     margin: 0px;
     padding: 0px;
- 
+    overflow-x: hidden;
 }
 
 
@@ -24,6 +24,7 @@
       background-image: url("images/mountains.png");
       background-size: cover;
       background-repeat: no-repeat;
+      background-attachment: fixed;
       min-height: 100vh;
       color: #1a1a2e;
       scroll-behavior: smooth;
@@ -176,7 +177,10 @@
       }
       #logo {
         justify-content: center;
+        max-width: 100%;
+        overflow: hidden;
       }
+      #logo img { height: 7rem; max-width: 100%; }
     }
 
     #hero-text {
@@ -478,8 +482,8 @@
     </div>
     <div id="logo">
       <picture>
-        <source media="(max-width: 540px)" srcset="full_size_im/CDF_MNHN_Mobile.svg" alt="Logos" style="height:11rem; vertical-align:middle;">
-        <img src="full_size_im/CDF_MNHN_Logo.svg" alt="Logos" style="height:11rem; vertical-align:middle;">
+        <source media="(max-width: 540px)" srcset="full_size_im/CDF_MNHN_Mobile.svg">
+        <img src="full_size_im/CDF_MNHN_Logo.svg" alt="Logos" style="height:11rem; vertical-align:middle; max-width:100%;">
       </picture>
     </div>
   </section>
