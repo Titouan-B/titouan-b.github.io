@@ -445,14 +445,11 @@
 
 
 .button {
-  background-color: rgb(128, 211, 129);
+  background-color: rgba(255, 255, 255, 0);
   border: none;
-  color: white;
-  padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
   cursor: pointer;
 }
   </style>
@@ -681,7 +678,10 @@
       
     </ul>
       <div>
-   <img src="full_size_im/NogAI.svg" style="vertical-align: middle; height: 50px;"/>
+      
+  </div>
+   <button onclick="playAudio()" type="button" class="button"><img src="full_size_im/NogAI.svg" style="vertical-align: middle; height: 50px;"/></button>
+  
     <span style="vertical-align: middle;">This website was coded and written by a human !</span>
 </div>
  
@@ -719,10 +719,6 @@
   Your browser does not support the audio element.
 </audio>
 
-
-  <div style="position: relative">    
-<button style="position: absolute; bottom: 10px; right: 50%;" onclick="playAudio()" type="button" class="button">Play Audio</button>
-  </div>
 
 <script>
 var spray1 = document.getElementById("spray-1"); 
