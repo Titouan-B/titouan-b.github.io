@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+	@font-face {
+    src: url("css/fonts/Jack.ttf");
+    font-family: "Jack";
+  }
+
+*{font-family: "Jack";}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #99b893;
+  color: #333;
+}
+
+/* Remove background-color from .container */
+.container {
+  
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 3%;
+  padding-left: 15%;
+  padding-right: 15%;
+  padding-bottom: 3%;
+  
+}
+
+/* Add new class for brown background box */
+.header-box {
+
+  padding: 80px;
+  border-radius: 10px;
+  
+
+  /* Background image settings */
+  background-image: url("images/header.png"); /* Path to your image */
+  background-size: contain;     /* Make it fill the box */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Avoid tiling */
+  
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+
+
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+
+.profile img {
+  height: 80px;
+  border-radius: 8px;
+  margin-right: 15px;
+  
+}
+
+
+
+.profile .text h1 {
+  margin: 0;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: black;
+}
+
+.profile .text p {
+  margin: 5px 0 0;
+  font-size: 0.9em;
+  color: #444;
+}
+
+.nav-links {
+  font-size: 1em;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 40px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  width: 90%;
+  height: 15em;
+  margin-bottom: 20px;
+  
+  transition: transform 0.3s ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s ease;
+}
+
+.gallery-item:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.1);
+}
+
+/* Title overlay */
+.gallery-item .title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 40%;
+  top: 70%;
+  color: white;
+  font-size: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+
+  
+}
+
+.gallery-item:hover .title {
+  opacity: 1;
+}
+
+.zoom-wrapper {
+  transform: scale(1);
+  transform-origin: top left;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+</style>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>| Titouan Bouiner |</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+   <div class="zoom-wrapper">
+  <div class="container">
+  <div class="header-box">
+    <header class="top-bar">
+      <div class="profile">
+        <img class = "banner" src="images/anakin-min.jpg" alt="Profile" />
+        <div class="text">
+          <h1>TITOUAN BOUINIER</h1>
+          <p>Science & Pictures</p>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#">Science</a>
+        <a href="#">About Me</a>
+        <a href="#">Illustrations</a>
+        <a href="#">Photos</a>
+      </nav>
+    </header>
+  </div>
+</div>
+    <main class="gallery">
+      <a href="article1.html" class="gallery-item"><img src="images/achilles dorsal zoom.jpg" alt="Gallery Image 1" /><div class="title">ACHILLES</div></a>
+	  <a href="article1.html" class="gallery-item"><img src="images/jelly1.jpeg" alt="Gallery Image 1" /><div class="title">JELLYFISH</div></a>
+		<a href="article1.html" class="gallery-item"><img src="images/caly1-min.jpg" alt="Gallery Image 1" /><div class="title">CALYPSO</div></a>
+		<a href="article1.html" class="gallery-item"><img src="images/Menelaus dorsal.jpg" alt="Gallery Image 1" /><div class="title">MENELAUS</div></a>
+		<a href="article1.html" class="gallery-item"><img src="images/eugenia.jpg" alt="Gallery Image 1" /><div class="title">EUGENIA</div></a>
+		<a href="article1.html" class="gallery-item"><img src="images/rethenor dorsal detail.jpg" alt="Gallery Image 1" /><div class="title">MENELAUS V2</div></a>
+    </main>
+ </div>
+</body>
+</html>
