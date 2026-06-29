@@ -451,6 +451,12 @@
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
+  font-size: 1.35rem;
+  font-weight: normal;
+  color: #2f080d;
+  font-family: Georgia, 'Times New Roman', serif;
+  padding: 0;
+  margin: 0;
 }
   </style>
 </head>
@@ -478,7 +484,7 @@
   <section id="hero">
     <div id="portrait"></div>
     <div id="hero-text">
-      <h1>Titouan Bouinier, PhD <span style="font-size:0.8rem; color:#888; font-family:sans-serif;">(he/him)</span></h1>
+      <h1>Titouan Bouinier, <button onclick="playAudioFah()" type="button" class="button">PhD</button> <span style="font-size:0.8rem; color:#888; font-family:sans-serif;">(he/him)</span></h1>
       <p>Doctor in Evolutionary ecology & Agricultural engineer</p>
       <div class="links">
         <a href="https://cv.hal.science/titouan-bouinier" target="_blank">
@@ -718,7 +724,10 @@
   <source src="music\jet-set-radio-success.mp3" type="audio/mp3">
   Your browser does not support the audio element.
 </audio>
-
+<audio id="fah">
+  <source src="music\fah.mp3" type="audio/mp3">
+  Your browser does not support the audio element.
+</audio>
 
 <script>
 var spray1 = document.getElementById("spray-1"); 
@@ -726,6 +735,7 @@ var spray2 = document.getElementById("spray-2");
 var spray3 = document.getElementById("spray-3"); 
 var spray4 = document.getElementById("spray-4"); 
 var spray5 = document.getElementById("spray-5"); 
+var fah = document.getElementById("fah"); 
 
 var n = 0
 function playAudio() { 
@@ -746,9 +756,10 @@ function playAudio() {
      n=0 };
 } 
 
-function pauseAudio() { 
-  x.pause(); 
-} 
+function playAudioFah() { 
+  fah.play()
+  }
+    
 </script>
 
 </body>
